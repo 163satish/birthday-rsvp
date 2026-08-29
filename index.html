@@ -10,6 +10,7 @@
             --dark-bg: #0d0d0d;
             --terminal-gray: #1a1a1a;
             --text-white: #e0e0e0;
+            --neon-blue: #00ffff;
         }
 
         body {
@@ -101,25 +102,45 @@
             gap: 15px;
         }
 
+        .btn-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
         button {
-            width: 100%;
-            background-color: var(--neon-green);
-            color: var(--dark-bg);
             border: none;
             padding: 12px;
             font-family: 'Courier New', Courier, monospace;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             text-transform: uppercase;
-            margin-top: 10px;
             border-radius: 3px;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
         }
 
-        button:hover {
+        .btn-wa {
+            background-color: #25D366;
+            color: black;
+        }
+
+        .btn-wa:hover {
             background-color: #fff;
-            box-shadow: 0 0 12px #fff;
+            box-shadow: 0 0 12px #25D366;
+        }
+
+        .btn-email {
+            background-color: transparent;
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+        }
+
+        .btn-email:hover {
+            background-color: var(--neon-blue);
+            color: black;
+            box-shadow: 0 0 12px var(--neon-blue);
         }
 
         .footer {
@@ -146,61 +167,86 @@
 
     <div class="system-msg">
         // PROTOCOL INSTRUCTIONS:<br>
-        Please execute your status response below to secure server bandwidth and restaurant seating table matrices.
+        Fill out your logistics details below. Select your preferred routing method to transmit your data packet.
     </div>
 
-    <!-- REPLACE THE ACTION URL WITH YOUR FORMSPREE ENDPOINT LINK -->
-    <form action="https://formspree.io" method="POST">
-        
-        <div class="form-group">
-            <label for="name">IDENTIFY YOUR UNIT (Name)</label>
-            <input type="text" id="name" name="guest_name" placeholder="e.g., Commander John Doe" required>
-        </div>
+    <div class="form-group">
+        <label for="name">IDENTIFY YOUR UNIT (Name)</label>
+        <input type="text" id="name" placeholder="e.g., Commander John Doe">
+    </div>
 
+    <div class="form-group">
+        <label for="status">MISSION STATUS</label>
+        <select id="status">
+            <option value="Attending! READY TO RAID.">READY TO RAID (Attending)</option>
+            <option value="Not Attending. ABORT MISSION.">ABORT MISSION (Cannot Attend)</option>
+        </select>
+    </div>
+
+    <div class="grid-2">
         <div class="form-group">
-            <label for="status">MISSION STATUS</label>
-            <select id="status" name="attendance_status" required>
-                <option value="Confirmed">READY TO RAID (Attending)</option>
-                <option value="Declined">ABORT MISSION (Cannot Attend)</option>
+            <label for="adults">ADULT UNITS</label>
+            <select id="adults">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4+">4+</option>
             </select>
         </div>
 
-        <div class="grid-2">
-            <div class="form-group">
-                <label for="adults">ADULT UNITS</label>
-                <select id="adults" name="adult_count">
-                    <option value="0">0</option>
-                    <option value="1" selected>1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4+</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="kids">CHILD UNITS</label>
-                <select id="kids" name="child_count">
-                    <option value="0" selected>0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4+">4+</option>
-                </select>
-            </div>
-        </div>
-
         <div class="form-group">
-            <label for="ages">CHILD AGES (For Buffet Matrix)</label>
-            <input type="text" id="ages" name="child_ages" placeholder="e.g., 4, 7 (Leave blank if 0)">
+            <label for="kids">CHILD UNITS</label>
+            <select id="kids">
+                <option value="0" selected>0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4+">4+</option>
+            </select>
         </div>
+    </div>
 
-        <button type="submit">TRANSMIT PACKET</button>
-    </form>
+    <div class="form-group">
+        <label for="ages">CHILD AGES (For Buffet Pricing)</label>
+        <input type="text" id="ages" placeholder="e.g., 4, 7 (Leave blank if none)">
+    </div>
+
+    <div class="btn-container">
+        <button class="btn-wa" onclick="sendData('whatsapp')">Via WhatsApp</button>
+        <button class="btn-email" onclick="sendData('email')">Via Email</button>
+    </div>
 
     <div class="footer">
-        SECURE TERMINAL CONNECTION V1.0.9 // NO ADS // NO COOKIES
+        SECURE TERMINAL CONNECTION V1.1.2 // ZERO DATABASE FOOTPRINT
     </div>
 </div>
+
+<script>
+function sendData(method) {
+    // 🎛️ CONFIGURATION SETTINGS
+    const myPhone = "17781234567"; // <-- REPLACE WITH YOUR REAL PHONE NUMBER (Include country code, no spaces or dashes)
+    const myEmail = "your_email@gmail.com"; // <-- REPLACE WITH YOUR REAL EMAIL ADDRESS
+
+    // 📊 DATA CAPTURE
+    const name = document.getElementById('name').value || "Anonymous Unit";
+    const status = document.getElementById('status').value;
+    const adults = document.getElementById('adults').value;
+    const kids = document.getElementById('kids').value;
+    const ages = document.getElementById('ages').value || "N/A";
+
+    // 🛠️ STRING COMPILATION
+    const textMessage = `[RSVP DATA PACKET TRANSMISSION]\nName: ${name}\nStatus: ${status}\nAdults: ${adults}\nKids: ${kids}\nChild Ages: ${ages}`;
+    const emailSubject = `RSVP Packet: ${name}`;
+
+    // 🚀 ROUTING ENGINE
+    if (method === 'whatsapp') {
+        window.open(`https://wa.me{myPhone}?text=${encodeURIComponent(textMessage)}`, '_blank');
+    } else if (method === 'email') {
+        window.location.href = `mailto:${myEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(textMessage)}`;
+    }
+}
+</script>
 
 </body>
 </html>
