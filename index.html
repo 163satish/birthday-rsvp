@@ -3,96 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protocol: Birthday Buffet RSVP</title>
+    <title>Our Little One is Turning One! 🎂</title>
     <style>
         :root {
-            --neon-green: #39ff14;
-            --dark-bg: #0d0d0d;
-            --terminal-gray: #1a1a1a;
-            --text-white: #e0e0e0;
+            --sky-blue: #e0f2fe;
+            --cloud-white: #ffffff;
+            --pastel-pink: #fbcfe8;
+            --pastel-yellow: #fef08a;
+            --text-color: #334155;
+            --button-color: #38bdf8;
+            --button-hover: #0ea5e9;
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: var(--neon-green);
-            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--sky-blue);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 20px;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        .terminal-container {
-            background-color: var(--terminal-gray);
-            border: 2px solid var(--neon-green);
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
+        /* Whimsical Floating Background Elements */
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: var(--pastel-pink);
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            animation: floatUp 8s infinite ease-in-out;
+            opacity: 0.6;
+            z-index: 1;
+        }
+        .balloon-2 {
+            background: var(--pastel-yellow);
+            right: 10%;
+            animation-duration: 11s;
+            animation-delay: 2s;
+        }
+        .balloon-3 {
+            background: #bbf7d0;
+            left: 15%;
+            bottom: 10%;
+            animation-duration: 9s;
+            animation-delay: 1s;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            50% { transform: translateY(50vh) rotate(10deg); }
+            100% { transform: translateY(-20vh) rotate(-10deg); }
+        }
+
+        .party-card {
+            background-color: var(--cloud-white);
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15);
             width: 100%;
-            max-width: 600px;
-            padding: 25px;
-            border-radius: 5px;
+            max-width: 500px;
+            padding: 35px;
             box-sizing: border-box;
+            z-index: 10;
+            position: relative;
+            border: 4px solid #f0f9ff;
         }
 
         .header {
-            border-bottom: 1px dashed var(--neon-green);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .one-badge {
+            background-color: var(--pastel-pink);
+            color: #db2777;
+            font-size: 3.5rem;
+            font-weight: bold;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 15px auto;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         h1 {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             margin: 0 0 10px 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            color: #0284c7;
         }
 
-        .meta-data {
-            color: var(--text-white);
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .system-msg {
-            color: var(--text-white);
-            background: #262626;
-            padding: 10px;
-            border-left: 3px solid var(--neon-green);
-            margin-bottom: 20px;
-            font-size: 0.9rem;
+        .party-details {
+            background-color: #f0f9ff;
+            padding: 15px;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #475569;
+            margin-bottom: 25px;
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
+            margin-bottom: 8px;
+            font-weight: 600;
             font-size: 0.95rem;
-        }
-
-        label::before {
-            content: "> ";
+            color: #0369a1;
         }
 
         input[type="text"], select {
             width: 100%;
-            background-color: var(--dark-bg);
-            border: 1px solid var(--neon-green);
-            color: var(--text-white);
-            padding: 10px;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: #f8fafc;
+            border: 2px solid #e2e8f0;
+            color: var(--text-color);
+            padding: 12px;
             font-size: 1rem;
-            border-radius: 3px;
+            border-radius: 12px;
             box-sizing: border-box;
+            transition: all 0.2s;
         }
 
         input[type="text"]:focus, select:focus {
             outline: none;
-            box-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+            border-color: var(--button-color);
+            background-color: #fff;
         }
 
         .grid-2 {
@@ -103,68 +146,66 @@
 
         button {
             width: 100%;
-            background-color: var(--neon-green);
-            color: var(--dark-bg);
+            background-color: var(--button-color);
+            color: white;
             border: none;
-            padding: 14px;
-            font-family: 'Courier New', Courier, monospace;
+            padding: 15px;
             font-weight: bold;
             font-size: 1.1rem;
             cursor: pointer;
-            text-transform: uppercase;
-            margin-top: 15px;
-            border-radius: 3px;
+            margin-top: 10px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
             transition: all 0.2s;
         }
 
         button:hover {
-            background-color: #fff;
-            box-shadow: 0 0 12px #fff;
+            background-color: var(--button-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
         }
 
         .footer {
             margin-top: 25px;
             text-align: center;
-            font-size: 0.75rem;
-            color: #555;
-            border-top: 1px dashed #333;
-            padding-top: 10px;
+            font-size: 0.8rem;
+            color: #94a3b8;
         }
     </style>
 </head>
 <body>
 
-<div class="terminal-container">
+<div class="balloon"></div>
+<div class="balloon balloon-2"></div>
+<div class="balloon balloon-3"></div>
+
+<div class="party-card">
     <div class="header">
-        <h1>[MISSION_INITIALIZATION]: BIRTHDAY_RAID</h1>
-        <div class="meta-data">
-            <strong>TARGET:</strong> Saravanaa Bhavan Delta (Buffet)<br>
-            <strong>COORDINATES:</strong> 8701 120 St, Delta, BC<br>
-            <strong>TIMESTAMP:</strong> Monday, Sept 7 @ 12:00 PM (Labour Day)
+        <span class="one-badge">1</span>
+        <h1>Our Little Boy is Turning One!</h1>
+        <div class="party-details">
+            📍 <strong>Where:</strong> Saravanaa Bhavan Delta (Buffet)<br>
+            📅 <strong>When:</strong> Monday, Sept 7th (Labour Day)<br>
+            ⏰ <strong>Time:</strong> 12:00 PM - Lunch Buffet
         </div>
     </div>
 
-    <div class="system-msg">
-        // PROTOCOL INSTRUCTIONS:<br>
-        Log your deployment status below. Packet transmits directly to your coordinator's Google Spreadsheet file array.
+    <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" placeholder="e.g., Jane Smith" required>
     </div>
 
     <div class="form-group">
-        <label for="name">IDENTIFY YOUR UNIT (Name)</label>
-        <input type="text" id="name" placeholder="e.g., Commander John Doe" required>
-    </div>
-
-    <div class="form-group">
-        <label for="status">MISSION STATUS</label>
+        <label for="status">Can You Make It?</label>
         <select id="status" required>
-            <option value="Attending! READY TO RAID.">READY TO RAID (Attending)</option>
-            <option value="Not Attending. ABORT MISSION.">ABORT MISSION (Cannot Attend)</option>
+            <option value="Attending">Yes, absolutely! 🥳</option>
+            <option value="Declined">Sorry, we can't make it 😢</option>
         </select>
     </div>
 
     <div class="grid-2">
         <div class="form-group">
-            <label for="adults">ADULT UNITS</label>
+            <label for="adults">Number of Adults</label>
             <select id="adults">
                 <option value="0">0</option>
                 <option value="1">1</option>
@@ -175,7 +216,7 @@
         </div>
 
         <div class="form-group">
-            <label for="kids">CHILD UNITS</label>
+            <label for="kids">Number of Kids</label>
             <select id="kids">
                 <option value="0" selected>0</option>
                 <option value="1">1</option>
@@ -187,15 +228,15 @@
     </div>
 
     <div class="form-group">
-        <label for="ages">CHILD AGES (For Buffet Matrix)</label>
-        <input type="text" id="ages" placeholder="e.g., 4, 7 (Leave blank if none)">
+        <label for="ages">Ages of the Kids (For restaurant pricing)</label>
+        <input type="text" id="ages" placeholder="e.g., 2, 5 (Leave blank if none)">
     </div>
 
-    <button type="button" id="submitBtn" onclick="transmitToGoogle()">TRANSMIT PACKET</button>
-    <div id="sysResponse" style="margin-top:15px; display:none; font-size:0.95rem; color:#fff; border-left: 3px solid #fff; padding-left:10px; font-style:italic;"></div>
+    <button type="button" id="submitBtn" onclick="transmitToGoogle()">Save My RSVP ✨</button>
+    <div id="sysResponse" style="margin-top:20px; display:none; text-align:center; font-weight:600; color:#0369a1; padding:15px; background:#f0f9ff; border-radius:12px;"></div>
 
     <div class="footer">
-        SECURE TERMINAL CONNECTION V2.0.0 // GOOGLE CLOUD BACKEND ENGINE
+        Can't wait to celebrate together! 🎈
     </div>
 </div>
 
@@ -204,7 +245,7 @@ function transmitToGoogle() {
     const btn = document.getElementById('submitBtn');
     const respDiv = document.getElementById('sysResponse');
     
-    // 🚨 PASTE YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL DIRECTLY BELOW
+    // 🚨 INCORPORATED DEPLOYED GOOGLE APPS SCRIPT WEB APP URL DIRECTLY BELOW
     const googleScriptUrl = "https://script.google.com/macros/s/AKfycbzZh7nWttbN89n6MHGEgq42vooaFdrfKKJZ8CvDRO99OqKCn8M5FPT2fFOqlpd5sjCgbw/exec";
 
     const payload = {
@@ -216,11 +257,11 @@ function transmitToGoogle() {
     };
 
     if(!payload.name || payload.name.trim() === "") { 
-        alert("CRITICAL ERROR: Identify your unit name sequence before deployment."); 
+        alert("Please enter your name so we know who is coming! 😊"); 
         return; 
     }
 
-    btn.innerText = "TRANSMITTING DATA PACKET...";
+    btn.innerText = "Saving your spot...";
     btn.disabled = true;
 
     fetch(googleScriptUrl, {
@@ -233,11 +274,11 @@ function transmitToGoogle() {
     .then(() => {
         btn.style.display = "none";
         respDiv.style.display = "block";
-        respDiv.innerHTML = "[SUCCESS]: DATA PACKET INJECTED INTO SPREADSHEET MATRIX. RESTAURANT BUFFER ARRAY SEATING CONFIRMED.";
+        respDiv.innerHTML = "✨ Thank you! Your RSVP has been saved. See you at the buffet! 🍰";
     })
     .catch(err => {
         console.error(err);
-        btn.innerText = "TRANSMISSION FAILED. RETRY PACKET SEND.";
+        btn.innerText = "Oops! Try clicking again.";
         btn.disabled = false;
     });
 }
