@@ -10,7 +10,6 @@
             --dark-bg: #0d0d0d;
             --terminal-gray: #1a1a1a;
             --text-white: #e0e0e0;
-            --neon-blue: #00ffff;
         }
 
         body {
@@ -102,45 +101,25 @@
             gap: 15px;
         }
 
-        .btn-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
         button {
+            width: 100%;
+            background-color: var(--neon-green);
+            color: var(--dark-bg);
             border: none;
-            padding: 12px;
+            padding: 14px;
             font-family: 'Courier New', Courier, monospace;
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             cursor: pointer;
             text-transform: uppercase;
+            margin-top: 15px;
             border-radius: 3px;
             transition: all 0.2s;
         }
 
-        .btn-wa {
-            background-color: #25D366;
-            color: black;
-        }
-
-        .btn-wa:hover {
+        button:hover {
             background-color: #fff;
-            box-shadow: 0 0 12px #25D366;
-        }
-
-        .btn-email {
-            background-color: transparent;
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
-        }
-
-        .btn-email:hover {
-            background-color: var(--neon-blue);
-            color: black;
-            box-shadow: 0 0 12px var(--neon-blue);
+            box-shadow: 0 0 12px #fff;
         }
 
         .footer {
@@ -167,17 +146,17 @@
 
     <div class="system-msg">
         // PROTOCOL INSTRUCTIONS:<br>
-        Fill out your logistics details below. Select your preferred routing method to transmit your data packet.
+        Log your deployment status below. Packet transmits directly to your coordinator's Google Spreadsheet file array.
     </div>
 
     <div class="form-group">
         <label for="name">IDENTIFY YOUR UNIT (Name)</label>
-        <input type="text" id="name" placeholder="e.g., Commander John Doe">
+        <input type="text" id="name" placeholder="e.g., Commander John Doe" required>
     </div>
 
     <div class="form-group">
         <label for="status">MISSION STATUS</label>
-        <select id="status">
+        <select id="status" required>
             <option value="Attending! READY TO RAID.">READY TO RAID (Attending)</option>
             <option value="Not Attending. ABORT MISSION.">ABORT MISSION (Cannot Attend)</option>
         </select>
@@ -208,45 +187,60 @@
     </div>
 
     <div class="form-group">
-        <label for="ages">CHILD AGES (For Buffet Pricing)</label>
+        <label for="ages">CHILD AGES (For Buffet Matrix)</label>
         <input type="text" id="ages" placeholder="e.g., 4, 7 (Leave blank if none)">
     </div>
 
-    <div class="btn-container">
-        <button class="btn-wa" onclick="sendData('whatsapp')">Via WhatsApp</button>
-        <button class="btn-email" onclick="sendData('email')">Via Email</button>
-    </div>
+    <button type="button" id="submitBtn" onclick="transmitToGoogle()">TRANSMIT PACKET</button>
+    <div id="sysResponse" style="margin-top:15px; display:none; font-size:0.95rem; color:#fff; border-left: 3px solid #fff; padding-left:10px; font-style:italic;"></div>
 
     <div class="footer">
-        SECURE TERMINAL CONNECTION V1.1.2 // ZERO DATABASE FOOTPRINT
+        SECURE TERMINAL CONNECTION V2.0.0 // GOOGLE CLOUD BACKEND ENGINE
     </div>
 </div>
 
 <script>
-function sendData(method) {
-    // 🎛️ CONFIGURATION SETTINGS
-    const myPhone = "17781234567"; // <-- REPLACE WITH YOUR REAL PHONE NUMBER (Include country code, no spaces or dashes)
-    const myEmail = "idummysat@gmail.com"; // <-- REPLACE WITH YOUR REAL EMAIL ADDRESS
+function transmitToGoogle() {
+    const btn = document.getElementById('submitBtn');
+    const respDiv = document.getElementById('sysResponse');
+    
+    // 🚨 PASTE YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL DIRECTLY BELOW
+    const googleScriptUrl = "https://script.google.com/macros/s/AKfycbzZh7nWttbN89n6MHGEgq42vooaFdrfKKJZ8CvDRO99OqKCn8M5FPT2fFOqlpd5sjCgbw/exec";
 
-    // 📊 DATA CAPTURE
-    const name = document.getElementById('name').value || "Anonymous Unit";
-    const status = document.getElementById('status').value;
-    const adults = document.getElementById('adults').value;
-    const kids = document.getElementById('kids').value;
-    const ages = document.getElementById('ages').value || "N/A";
+    const payload = {
+        name: document.getElementById('name').value,
+        status: document.getElementById('status').value,
+        adults: document.getElementById('adults').value,
+        kids: document.getElementById('kids').value,
+        ages: document.getElementById('ages').value
+    };
 
-    // 🛠️ STRING COMPILATION
-    const textMessage = `[RSVP DATA PACKET TRANSMISSION]\nName: ${name}\nStatus: ${status}\nAdults: ${adults}\nKids: ${kids}\nChild Ages: ${ages}`;
-    const emailSubject = `RSVP Packet: ${name}`;
-
-    // 🚀 ROUTING ENGINE
-    if (method === 'whatsapp') {
-        window.open(`https://wa.me{myPhone}?text=${encodeURIComponent(textMessage)}`, '_blank');
-    } else if (method === 'email') {
-        window.location.href = `mailto:${myEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(textMessage)}`;
+    if(!payload.name || payload.name.trim() === "") { 
+        alert("CRITICAL ERROR: Identify your unit name sequence before deployment."); 
+        return; 
     }
+
+    btn.innerText = "TRANSMITTING DATA PACKET...";
+    btn.disabled = true;
+
+    fetch(googleScriptUrl, {
+        method: "POST",
+        mode: "no-cors",
+        cache: "no-cache",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    })
+    .then(() => {
+        btn.style.display = "none";
+        respDiv.style.display = "block";
+        respDiv.innerHTML = "[SUCCESS]: DATA PACKET INJECTED INTO SPREADSHEET MATRIX. RESTAURANT BUFFER ARRAY SEATING CONFIRMED.";
+    })
+    .catch(err => {
+        console.error(err);
+        btn.innerText = "TRANSMISSION FAILED. RETRY PACKET SEND.";
+        btn.disabled = false;
+    });
 }
 </script>
-
 </body>
 </html>
