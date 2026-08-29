@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol: Birthday Buffet RSVP</title>
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --dark-bg: #0d0d0d;
+            --terminal-gray: #1a1a1a;
+            --text-white: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--neon-green);
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .terminal-container {
+            background-color: var(--terminal-gray);
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
+            width: 100%;
+            max-width: 600px;
+            padding: 25px;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            border-bottom: 1px dashed var(--neon-green);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .meta-data {
+            color: var(--text-white);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .system-msg {
+            color: var(--text-white);
+            background: #262626;
+            padding: 10px;
+            border-left: 3px solid var(--neon-green);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        label::before {
+            content: "> ";
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            background-color: var(--dark-bg);
+            border: 1px solid var(--neon-green);
+            color: var(--text-white);
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--neon-green);
+            color: var(--dark-bg);
+            border: none;
+            padding: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-top: 10px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #fff;
+            box-shadow: 0 0 12px #fff;
+        }
+
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #555;
+            border-top: 1px dashed #333;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="terminal-container">
+    <div class="header">
+        <h1>[MISSION_INITIALIZATION]: BIRTHDAY_RAID</h1>
+        <div class="meta-data">
+            <strong>TARGET:</strong> Saravanaa Bhavan Delta (Buffet)<br>
+            <strong>COORDINATES:</strong> 8701 120 St, Delta, BC<br>
+            <strong>TIMESTAMP:</strong> Monday, Sept 7 @ 12:00 PM (Labour Day)
+        </div>
+    </div>
+
+    <div class="system-msg">
+        // PROTOCOL INSTRUCTIONS:<br>
+        Please execute your status response below to secure server bandwidth and restaurant seating table matrices.
+    </div>
+
+    <!-- REPLACE THE ACTION URL WITH YOUR FORMSPREE ENDPOINT LINK -->
+    <form action="https://formspree.io" method="POST">
+        
+        <div class="form-group">
+            <label for="name">IDENTIFY YOUR UNIT (Name)</label>
+            <input type="text" id="name" name="guest_name" placeholder="e.g., Commander John Doe" required>
+        </div>
+
+        <div class="form-group">
+            <label for="status">MISSION STATUS</label>
+            <select id="status" name="attendance_status" required>
+                <option value="Confirmed">READY TO RAID (Attending)</option>
+                <option value="Declined">ABORT MISSION (Cannot Attend)</option>
+            </select>
+        </div>
+
+        <div class="grid-2">
+            <div class="form-group">
+                <label for="adults">ADULT UNITS</label>
+                <select id="adults" name="adult_count">
+                    <option value="0">0</option>
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="kids">CHILD UNITS</label>
+                <select id="kids" name="child_count">
+                    <option value="0" selected>0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4+">4+</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ages">CHILD AGES (For Buffet Matrix)</label>
+            <input type="text" id="ages" name="child_ages" placeholder="e.g., 4, 7 (Leave blank if 0)">
+        </div>
+
+        <button type="submit">TRANSMIT PACKET</button>
+    </form>
+
+    <div class="footer">
+        SECURE TERMINAL CONNECTION V1.0.9 // NO ADS // NO COOKIES
+    </div>
+</div>
+
+</body>
+</html>
