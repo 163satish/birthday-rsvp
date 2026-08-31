@@ -17,7 +17,6 @@
             --pastel-purple: #e9d5ff;
         }
 
-        /* Prevent jumping scrollbars by containing screen area */
         html, body {
             background-color: var(--sky-blue);
             color: var(--text-color);
@@ -26,7 +25,7 @@
             padding: 0;
             width: 100%;
             height: 100vh;
-            overflow: hidden; 
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -50,7 +49,7 @@
             opacity: 0.8;
         }
 
-        /* Gentle Sway Animations (No vertical drifting) */
+        /* Gentle Sway Animations */
         @keyframes swayLeft {
             0% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-10px) rotate(4deg); }
@@ -63,12 +62,69 @@
             100% { transform: translateY(0) rotate(0deg); }
         }
 
+        /* Confetti fall animation */
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-10px) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            25% {
+                transform: translateY(25vh) rotate(90deg) scale(0.95);
+                opacity: 0.9;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(0.9);
+                opacity: 0.7;
+            }
+            75% {
+                transform: translateY(75vh) rotate(270deg) scale(0.85);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        /* Confetti drift — gives each piece a gentle horizontal wobble */
+        @keyframes confettiDrift {
+            0%, 100% { margin-left: 0; }
+            25% { margin-left: 15px; }
+            75% { margin-left: -15px; }
+        }
+
+        /* Confetti pieces */
+        .confetti {
+            position: absolute;
+            top: -12px;
+            width: 8px;
+            height: 8px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 0;
+            animation: confettiFall linear infinite, confettiDrift ease-in-out infinite;
+        }
+
+        /* Different confetti shapes */
+        .confetti.circle {
+            border-radius: 50%;
+        }
+        .confetti.square {
+            border-radius: 2px;
+        }
+        .confetti.ribbon {
+            width: 4px;
+            height: 14px;
+            border-radius: 2px;
+        }
+
         /* Balloons styling */
         .balloon {
             width: 42px;
             height: 52px;
             border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
         }
+
         .balloon::after {
             content: "│";
             font-size: 8px;
@@ -78,12 +134,60 @@
             color: rgba(0,0,0,0.12);
         }
 
-        /* Asset Placements */
-        .b1 { left: 4%; top: 8%; background: var(--pastel-pink); animation: swayLeft 6s infinite ease-in-out; }
-        .b2 { right: 5%; top: 10%; background: var(--pastel-yellow); animation: swayRight 8s infinite ease-in-out; }
-        .b3 { left: 6%; bottom: 8%; background: var(--pastel-green); animation: swayRight 7s infinite ease-in-out; }
-        .b4 { right: 4%; bottom: 10%; background: var(--pastel-purple); animation: swayLeft 9s infinite ease-in-out; }
-        .b5 { left: 48%; top: 2%; background: #ffedd5; animation: swayLeft 10s infinite ease-in-out; }
+        /* ── Float animation for rising elements ── */
+        @keyframes floatUp {
+            0%   { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+            50%  { transform: translateY(-18px) rotate(3deg); opacity: 0.9; }
+            100% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+        }
+        @keyframes floatUpAlt {
+            0%   { transform: translateY(0) rotate(0deg); opacity: 0.65; }
+            50%  { transform: translateY(-12px) rotate(-3deg); opacity: 0.85; }
+            100% { transform: translateY(0) rotate(0deg); opacity: 0.65; }
+        }
+
+        /* Twinkle for stars */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50%      { opacity: 1;   transform: scale(1.25); }
+        }
+
+        /* Asset Placements — Original balloons */
+        .b1  { left: 4%;  top: 8%;     background: var(--pastel-pink);   animation: swayLeft 6s infinite ease-in-out; }
+        .b2  { right: 5%; top: 10%;    background: var(--pastel-yellow); animation: swayRight 8s infinite ease-in-out; }
+        .b3  { left: 6%;  bottom: 8%;  background: var(--pastel-green);  animation: swayRight 7s infinite ease-in-out; }
+        .b4  { right: 4%; bottom: 10%; background: var(--pastel-purple); animation: swayLeft 9s infinite ease-in-out; }
+        .b5  { left: 48%; top: 2%;     background: #ffedd5;             animation: swayLeft 10s infinite ease-in-out; }
+
+        /* Extra balloons — scattered along edges */
+        .b6  { left: 2%;  top: 30%;    background: #bae6fd; animation: floatUp 7s infinite ease-in-out; }
+        .b7  { right: 3%; top: 32%;    background: #fecaca; animation: floatUpAlt 8s infinite ease-in-out; }
+        .b8  { left: 10%; top: 60%;    background: var(--pastel-yellow); animation: floatUp 9s infinite ease-in-out; opacity: 0.7; }
+        .b9  { right: 10%;top: 65%;    background: var(--pastel-pink);   animation: floatUpAlt 6.5s infinite ease-in-out; opacity: 0.7; }
+        .b10 { left: 3%;  bottom: 28%; background: #c4b5fd; animation: swayRight 8s infinite ease-in-out; }
+        .b11 { right: 2%; bottom: 30%; background: #a7f3d0; animation: swayLeft 7.5s infinite ease-in-out; }
+        .b12 { left: 15%; top: 3%;     background: #fda4af; animation: floatUp 11s infinite ease-in-out; opacity: 0.65; }
+        .b13 { right: 14%;top: 5%;     background: #d8b4fe; animation: floatUpAlt 10s infinite ease-in-out; opacity: 0.65; }
+
+        /* Small balloons — mini accent versions */
+        .balloon-sm {
+            width: 26px;
+            height: 32px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            opacity: 0.55;
+        }
+        .balloon-sm::after {
+            content: "│";
+            font-size: 6px;
+            position: absolute;
+            bottom: -7px;
+            left: 11px;
+            color: rgba(0,0,0,0.08);
+        }
+        .bs1 { left: 20%; bottom: 5%;  background: #fde68a; animation: floatUp 9s infinite ease-in-out; }
+        .bs2 { right: 20%;bottom: 6%;  background: #fbcfe8; animation: floatUpAlt 8s infinite ease-in-out; }
+        .bs3 { left: 25%; top: 15%;    background: #bbf7d0; animation: swayLeft 7s infinite ease-in-out; }
+        .bs4 { right: 22%;top: 18%;    background: #bae6fd; animation: swayRight 8.5s infinite ease-in-out; }
 
         /* Party Hat Accents */
         .party-hat {
@@ -93,12 +197,33 @@
             border-right: 14px solid transparent;
             border-bottom: 28px solid #fdba74;
         }
-        .h1 { left: 8%; top: 45%; transform: rotate(15deg); animation: swayLeft 7s infinite ease-in-out; }
-        .h2 { right: 8%; top: 50%; transform: rotate(-20deg); border-bottom-color: #c084fc; animation: swayRight 8s infinite ease-in-out; }
 
+        .h1 { left: 8%;  top: 45%; transform: rotate(15deg);  animation: swayLeft 7s infinite ease-in-out; }
+        .h2 { right: 8%; top: 50%; transform: rotate(-20deg); border-bottom-color: #c084fc; animation: swayRight 8s infinite ease-in-out; }
+        .h3 { left: 18%; bottom: 18%; transform: rotate(10deg); border-bottom-color: #f9a8d4; animation: floatUp 9s infinite ease-in-out; opacity: 0.6; }
+
+        /* Stars — original + extras with twinkle */
         .star { font-size: 1.4rem; color: var(--pastel-yellow); }
-        .s1 { left: 14%; top: 25%; animation: swayLeft 5s infinite ease-in-out; }
+        .s1 { left: 14%;  top: 25%;    animation: swayLeft 5s infinite ease-in-out; }
         .s2 { right: 15%; bottom: 30%; animation: swayRight 6s infinite ease-in-out; }
+        .s3 { left: 22%;  top: 5%;     animation: twinkle 3s infinite ease-in-out; font-size: 1.1rem; }
+        .s4 { right: 20%; top: 8%;     animation: twinkle 4s infinite ease-in-out 0.5s; font-size: 1rem; }
+        .s5 { left: 8%;   bottom: 40%; animation: twinkle 3.5s infinite ease-in-out 1s; font-size: 1.2rem; }
+        .s6 { right: 6%;  bottom: 45%; animation: twinkle 4.5s infinite ease-in-out 0.3s; font-size: 1rem; }
+        .s7 { left: 30%;  bottom: 3%;  animation: twinkle 3s infinite ease-in-out 0.8s; font-size: 1.3rem; }
+        .s8 { right: 28%; bottom: 4%;  animation: twinkle 3.8s infinite ease-in-out 1.2s; font-size: 1.1rem; }
+
+        /* Floating emoji accents */
+        .emoji-float {
+            position: absolute;
+            font-size: 1.3rem;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .ef1 { left: 5%;   top: 18%;    animation: floatUp 8s infinite ease-in-out; }
+        .ef2 { right: 6%;  top: 22%;    animation: floatUpAlt 9s infinite ease-in-out; }
+        .ef3 { left: 12%;  bottom: 15%; animation: floatUp 10s infinite ease-in-out; }
+        .ef4 { right: 12%; bottom: 18%; animation: floatUpAlt 7s infinite ease-in-out; }
 
         /* Centered White RSVP Card */
         .party-card {
@@ -150,6 +275,36 @@
             font-size: 0.88rem;
             line-height: 1.45;
             color: #475569;
+        }
+
+        .party-details a {
+            color: #0284c7;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .party-details a:hover {
+            color: #0369a1;
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 6px;
+            font-size: 0.82rem;
+            color: #0284c7;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 4px 10px;
+            background: #e0f2fe;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .map-link:hover {
+            background: #bae6fd;
+            text-decoration: none;
         }
 
         .form-group {
@@ -209,13 +364,13 @@
         }
 
         #sysResponse {
-            margin-top: 12px; 
-            display: none; 
-            text-align: center; 
-            font-weight: 600; 
-            color: #0369a1; 
-            padding: 12px; 
-            background: #f0f9ff; 
+            margin-top: 12px;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+            color: #0369a1;
+            padding: 12px;
+            background: #f0f9ff;
             border-radius: 12px;
             font-size: 0.9rem;
         }
@@ -226,22 +381,87 @@
             font-size: 0.78rem;
             color: #94a3b8;
         }
+
+        /* Success confetti burst — triggered after RSVP */
+        @keyframes burstFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(60vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .burst-confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            z-index: 1000;
+            pointer-events: none;
+            animation: burstFall 2.5s ease-out forwards;
+        }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .confetti, .decor-item, .burst-confetti, .balloon-sm, .emoji-float, .star {
+                animation: none !important;
+                opacity: 0.5;
+            }
+        }
     </style>
 </head>
 <body>
 
 <!-- Background Decorations Canvas -->
 <div class="decor-layer">
+    <!-- Balloons — large -->
     <div class="decor-item balloon b1"></div>
     <div class="decor-item balloon b2"></div>
     <div class="decor-item balloon b3"></div>
     <div class="decor-item balloon b4"></div>
     <div class="decor-item balloon b5"></div>
+    <div class="decor-item balloon b6"></div>
+    <div class="decor-item balloon b7"></div>
+    <div class="decor-item balloon b8"></div>
+    <div class="decor-item balloon b9"></div>
+    <div class="decor-item balloon b10"></div>
+    <div class="decor-item balloon b11"></div>
+    <div class="decor-item balloon b12"></div>
+    <div class="decor-item balloon b13"></div>
+
+    <!-- Balloons — small accents -->
+    <div class="decor-item balloon-sm bs1"></div>
+    <div class="decor-item balloon-sm bs2"></div>
+    <div class="decor-item balloon-sm bs3"></div>
+    <div class="decor-item balloon-sm bs4"></div>
+
+    <!-- Party hats -->
     <div class="decor-item party-hat h1"></div>
     <div class="decor-item party-hat h2"></div>
+    <div class="decor-item party-hat h3"></div>
+
+    <!-- Stars & sparkles -->
     <div class="decor-item star s1">⭐</div>
     <div class="decor-item star s2">✨</div>
+    <div class="decor-item star s3">⭐</div>
+    <div class="decor-item star s4">✨</div>
+    <div class="decor-item star s5">⭐</div>
+    <div class="decor-item star s6">✨</div>
+    <div class="decor-item star s7">🌟</div>
+    <div class="decor-item star s8">✨</div>
+
+    <!-- Floating emoji accents -->
+    <div class="emoji-float ef1">🎈</div>
+    <div class="emoji-float ef2">🎁</div>
+    <div class="emoji-float ef3">🧁</div>
+    <div class="emoji-float ef4">🎉</div>
 </div>
+
+<!-- Confetti Canvas — JS fills this -->
+<div id="confettiCanvas" class="decor-layer" style="z-index: 2;"></div>
 
 <!-- Main RSVP Card -->
 <div class="party-card">
@@ -249,9 +469,10 @@
         <span class="one-badge">1</span>
         <h1>Our Little Boy is Turning One!</h1>
         <div class="party-details">
-            📍 <strong>Where:</strong> <a href="https://google.com" target="_blank" style="color: #0284c7; font-weight: bold; text-decoration: underline;">Saravanaa Bhavan, 8701 120 St, Delta, BC</a><br>
+            📍 <strong>Where:</strong> <a href="https://maps.app.goo.gl/wcpAz48rbvpB59iU6" target="_blank" rel="noopener">Saravanaa Bhavan, 8701 120 St, Delta, BC</a><br>
             📅 <strong>When:</strong> Monday, Sept 7th<br>
-            ⏰ <strong>Time:</strong> 12:00 PM
+            ⏰ <strong>Time:</strong> 12:00 PM<br>
+                
         </div>
     </div>
 
@@ -274,12 +495,11 @@
             <select id="adults">
                 <option value="0">0</option>
                 <option value="1" selected>1</option>
-                <option value="2" >2</option>
+                <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4+">4+</option>
             </select>
         </div>
-
         <div class="form-group">
             <label for="kids">Number of Kids</label>
             <select id="kids">
@@ -298,6 +518,7 @@
     </div>
 
     <button type="button" id="submitBtn" onclick="transmitToGoogle()">Save My RSVP ✨</button>
+
     <div id="sysResponse"></div>
 
     <div class="footer">
@@ -306,13 +527,64 @@
 </div>
 
 <script>
+// ── Ambient confetti — gentle background celebration ──
+(function createAmbientConfetti() {
+    const canvas = document.getElementById('confettiCanvas');
+    const colors = ['#fbcfe8', '#fef08a', '#bbf7d0', '#e9d5ff', '#fed7aa', '#bae6fd', '#fecaca', '#c4b5fd', '#a7f3d0', '#fda4af'];
+    const shapes = ['circle', 'square', 'ribbon'];
+    const count = 35; // more pieces for a fuller celebration feel
+
+    for (let i = 0; i < count; i++) {
+        const piece = document.createElement('div');
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const left = Math.random() * 100;
+        const size = 4 + Math.random() * 7;
+        const fallDuration = 7 + Math.random() * 12;    // 7–19s fall
+        const driftDuration = 3 + Math.random() * 5;    // 3–8s wobble
+        const delay = Math.random() * fallDuration;      // stagger start
+
+        piece.className = `confetti ${shape}`;
+        piece.style.cssText = `
+            left: ${left}%;
+            width: ${shape === 'ribbon' ? size * 0.5 : size}px;
+            height: ${shape === 'ribbon' ? size * 1.8 : size}px;
+            background: ${color};
+            animation-duration: ${fallDuration}s, ${driftDuration}s;
+            animation-delay: -${delay}s, -${delay * 0.5}s;
+        `;
+        canvas.appendChild(piece);
+    }
+})();
+
+// ── Celebration burst — fires after successful RSVP ──
+function fireCelebrationBurst() {
+    const colors = ['#f472b6', '#facc15', '#4ade80', '#a78bfa', '#fb923c', '#38bdf8', '#f87171'];
+    const count = 40;
+
+    for (let i = 0; i < count; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'burst-confetti';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.left = 40 + Math.random() * 20 + '%';
+        piece.style.top = 30 + Math.random() * 10 + '%';
+        piece.style.width = (6 + Math.random() * 8) + 'px';
+        piece.style.height = (6 + Math.random() * 8) + 'px';
+        piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        piece.style.animationDelay = (Math.random() * 0.6) + 's';
+        piece.style.animationDuration = (1.8 + Math.random() * 1.5) + 's';
+        document.body.appendChild(piece);
+
+        // Clean up after animation
+        setTimeout(() => piece.remove(), 3500);
+    }
+}
+
 function transmitToGoogle() {
     const btn = document.getElementById('submitBtn');
     const respDiv = document.getElementById('sysResponse');
-    
-    // Incorporated Deployed Google Apps Script Link
-    const googleScriptUrl = "https://script.google.com/macros/s/AKfycbzZh7nWttbN89n6MHGEgq42vooaFdrfKKJZ8CvDRO99OqKCn8M5FPT2fFOqlpd5sjCgbw/exec";
 
+    const googleScriptUrl = "https://script.google.com/macros/s/AKfycbzZh7nWttbN89n6MHGEgq42vooaFdrfKKJZ8CvDRO99OqKCn8M5FPT2fFOqlpd5sjCgbw/exec";
     const payload = {
         name: document.getElementById('name').value,
         status: document.getElementById('status').value,
@@ -321,9 +593,9 @@ function transmitToGoogle() {
         ages: document.getElementById('ages').value
     };
 
-    if(!payload.name || payload.name.trim() === "") { 
-        alert("Please enter your name so we know who is coming! 😊"); 
-        return; 
+    if (!payload.name || payload.name.trim() === "") {
+        alert("Please enter your name so we know who is coming! 😊");
+        return;
     }
 
     btn.innerText = "Saving your spot...";
@@ -340,6 +612,7 @@ function transmitToGoogle() {
         btn.style.display = "none";
         respDiv.style.display = "block";
         respDiv.innerHTML = "✨ Thank you! Your RSVP has been saved. See you at the buffet! 🍰";
+        fireCelebrationBurst();
     })
     .catch(err => {
         console.error(err);
@@ -348,5 +621,6 @@ function transmitToGoogle() {
     });
 }
 </script>
+
 </body>
 </html>
