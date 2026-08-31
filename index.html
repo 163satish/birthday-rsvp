@@ -13,110 +13,154 @@
             --text-color: #334155;
             --button-color: #38bdf8;
             --button-hover: #0ea5e9;
+            --pastel-green: #bbf7d0;
+            --pastel-purple: #e9d5ff;
         }
 
-        body {
+        /* Prevent jumping scrollbars by containing screen area */
+        html, body {
             background-color: var(--sky-blue);
             color: var(--text-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px;
             margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden; 
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
+            box-sizing: border-box;
         }
 
-        /* Whimsical Floating Background Elements */
-        .balloon {
+        /* Decorative Elements Background Layer */
+        .decor-layer {
             position: absolute;
-            width: 40px;
-            height: 50px;
-            background: var(--pastel-pink);
-            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-            animation: floatUp 8s infinite ease-in-out;
-            opacity: 0.6;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
             z-index: 1;
         }
-        .balloon-2 {
-            background: var(--pastel-yellow);
-            right: 10%;
-            animation-duration: 11s;
-            animation-delay: 2s;
-        }
-        .balloon-3 {
-            background: #bbf7d0;
-            left: 15%;
-            bottom: 10%;
-            animation-duration: 9s;
-            animation-delay: 1s;
+
+        .decor-item {
+            position: absolute;
+            opacity: 0.8;
         }
 
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            50% { transform: translateY(50vh) rotate(10deg); }
-            100% { transform: translateY(-20vh) rotate(-10deg); }
+        /* Gentle Sway Animations (No vertical drifting) */
+        @keyframes swayLeft {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(4deg); }
+            100% { transform: translateY(0) rotate(0deg); }
         }
 
+        @keyframes swayRight {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(-6deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        /* Balloons styling */
+        .balloon {
+            width: 42px;
+            height: 52px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+        }
+        .balloon::after {
+            content: "│";
+            font-size: 8px;
+            position: absolute;
+            bottom: -10px;
+            left: 18px;
+            color: rgba(0,0,0,0.12);
+        }
+
+        /* Asset Placements */
+        .b1 { left: 4%; top: 8%; background: var(--pastel-pink); animation: swayLeft 6s infinite ease-in-out; }
+        .b2 { right: 5%; top: 10%; background: var(--pastel-yellow); animation: swayRight 8s infinite ease-in-out; }
+        .b3 { left: 6%; bottom: 8%; background: var(--pastel-green); animation: swayRight 7s infinite ease-in-out; }
+        .b4 { right: 4%; bottom: 10%; background: var(--pastel-purple); animation: swayLeft 9s infinite ease-in-out; }
+        .b5 { left: 48%; top: 2%; background: #ffedd5; animation: swayLeft 10s infinite ease-in-out; }
+
+        /* Party Hat Accents */
+        .party-hat {
+            width: 0;
+            height: 0;
+            border-left: 14px solid transparent;
+            border-right: 14px solid transparent;
+            border-bottom: 28px solid #fdba74;
+        }
+        .h1 { left: 8%; top: 45%; transform: rotate(15deg); animation: swayLeft 7s infinite ease-in-out; }
+        .h2 { right: 8%; top: 50%; transform: rotate(-20deg); border-bottom-color: #c084fc; animation: swayRight 8s infinite ease-in-out; }
+
+        .star { font-size: 1.4rem; color: var(--pastel-yellow); }
+        .s1 { left: 14%; top: 25%; animation: swayLeft 5s infinite ease-in-out; }
+        .s2 { right: 15%; bottom: 30%; animation: swayRight 6s infinite ease-in-out; }
+
+        /* Centered White RSVP Card */
         .party-card {
             background-color: var(--cloud-white);
             border-radius: 24px;
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15);
-            width: 100%;
-            max-width: 500px;
-            padding: 35px;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.12);
+            width: 92%;
+            max-width: 440px;
+            padding: 28px;
             box-sizing: border-box;
             z-index: 10;
             position: relative;
             border: 4px solid #f0f9ff;
+            max-height: 96vh;
+            overflow-y: auto;
         }
+
+        .party-card::-webkit-scrollbar { width: 4px; }
+        .party-card::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 4px; }
 
         .header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 18px;
         }
 
         .one-badge {
             background-color: var(--pastel-pink);
             color: #db2777;
-            font-size: 3.5rem;
+            font-size: 2.6rem;
             font-weight: bold;
-            width: 80px;
-            height: 80px;
-            line-height: 80px;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
             border-radius: 50%;
-            margin: 0 auto 15px auto;
+            margin: 0 auto 10px auto;
             display: block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         h1 {
-            font-size: 1.6rem;
-            margin: 0 0 10px 0;
+            font-size: 1.35rem;
+            margin: 0 0 8px 0;
             color: #0284c7;
         }
 
         .party-details {
             background-color: #f0f9ff;
-            padding: 15px;
+            padding: 12px;
             border-radius: 16px;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 0.88rem;
+            line-height: 1.45;
             color: #475569;
-            margin-bottom: 25px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 14px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             color: #0369a1;
         }
 
@@ -125,11 +169,11 @@
             background-color: #f8fafc;
             border: 2px solid #e2e8f0;
             color: var(--text-color);
-            padding: 12px;
-            font-size: 1rem;
+            padding: 10px;
+            font-size: 0.95rem;
             border-radius: 12px;
             box-sizing: border-box;
-            transition: all 0.2s;
+            transition: border-color 0.2s;
         }
 
         input[type="text"]:focus, select:focus {
@@ -141,7 +185,7 @@
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 12px;
         }
 
         button {
@@ -149,44 +193,65 @@
             background-color: var(--button-color);
             color: white;
             border: none;
-            padding: 15px;
+            padding: 14px;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 5px;
             border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
             transition: all 0.2s;
         }
 
         button:hover {
             background-color: var(--button-hover);
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+        }
+
+        #sysResponse {
+            margin-top: 12px; 
+            display: none; 
+            text-align: center; 
+            font-weight: 600; 
+            color: #0369a1; 
+            padding: 12px; 
+            background: #f0f9ff; 
+            border-radius: 12px;
+            font-size: 0.9rem;
         }
 
         .footer {
-            margin-top: 25px;
+            margin-top: 15px;
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: #94a3b8;
         }
     </style>
 </head>
 <body>
 
-<div class="balloon"></div>
-<div class="balloon balloon-2"></div>
-<div class="balloon balloon-3"></div>
+<!-- Background Decorations Canvas -->
+<div class="decor-layer">
+    <div class="decor-item balloon b1"></div>
+    <div class="decor-item balloon b2"></div>
+    <div class="decor-item balloon b3"></div>
+    <div class="decor-item balloon b4"></div>
+    <div class="decor-item balloon b5"></div>
+    <div class="decor-item party-hat h1"></div>
+    <div class="decor-item party-hat h2"></div>
+    <div class="decor-item star s1">⭐</div>
+    <div class="decor-item star s2">✨</div>
+</div>
 
+<!-- Main RSVP Card -->
 <div class="party-card">
     <div class="header">
         <span class="one-badge">1</span>
         <h1>Our Little Boy is Turning One!</h1>
         <div class="party-details">
-            📍 <strong>Where:</strong> Saravanaa Bhavan Delta (Buffet)<br>
-            📅 <strong>When:</strong> Monday, Sept 7th (Labour Day)<br>
-            ⏰ <strong>Time:</strong> 12:00 PM - Lunch Buffet
+            📍 <strong>Where:</strong> Saravanaa Bhavan, Delta<br>
+            📅 <strong>When:</strong> Monday, Sept 7th<br>
+            ⏰ <strong>Time:</strong> 12:00 PM
         </div>
     </div>
 
@@ -199,7 +264,7 @@
         <label for="status">Can You Make It?</label>
         <select id="status" required>
             <option value="Attending">Yes, absolutely! 🥳</option>
-            <option value="Declined">Sorry, we can't make it 😢</option>
+            <option value="Declined">Sorry, can't make it 😢</option>
         </select>
     </div>
 
@@ -233,7 +298,7 @@
     </div>
 
     <button type="button" id="submitBtn" onclick="transmitToGoogle()">Save My RSVP ✨</button>
-    <div id="sysResponse" style="margin-top:20px; display:none; text-align:center; font-weight:600; color:#0369a1; padding:15px; background:#f0f9ff; border-radius:12px;"></div>
+    <div id="sysResponse"></div>
 
     <div class="footer">
         Can't wait to celebrate together! 🎈
@@ -245,7 +310,7 @@ function transmitToGoogle() {
     const btn = document.getElementById('submitBtn');
     const respDiv = document.getElementById('sysResponse');
     
-    // 🚨 INCORPORATED DEPLOYED GOOGLE APPS SCRIPT WEB APP URL DIRECTLY BELOW
+    // Incorporated Deployed Google Apps Script Link
     const googleScriptUrl = "https://script.google.com/macros/s/AKfycbzZh7nWttbN89n6MHGEgq42vooaFdrfKKJZ8CvDRO99OqKCn8M5FPT2fFOqlpd5sjCgbw/exec";
 
     const payload = {
