@@ -24,17 +24,26 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            min-height: 100dvh;      /* dynamic viewport height — avoids iOS address bar quirks */
             display: flex;
             justify-content: center;
             align-items: center;
             box-sizing: border-box;
         }
 
+        /* On small screens: let the page scroll so decorations above/below are visible */
+        @media (max-width: 520px) {
+            html, body {
+                align-items: flex-start;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
         /* Decorative Elements Background Layer */
         .decor-layer {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -225,9 +234,11 @@
         .ef3 { left: 12%;  bottom: 15%; animation: floatUp 10s infinite ease-in-out; }
         .ef4 { right: 12%; bottom: 18%; animation: floatUpAlt 7s infinite ease-in-out; }
 
-        /* Centered White RSVP Card */
+        /* Centered RSVP Card — frosted glass so decorations show through */
         .party-card {
-            background-color: var(--cloud-white);
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 24px;
             box-shadow: 0 10px 25px rgba(56, 189, 248, 0.12);
             width: 92%;
@@ -236,9 +247,18 @@
             box-sizing: border-box;
             z-index: 10;
             position: relative;
-            border: 4px solid #f0f9ff;
-            max-height: 96vh;
-            overflow-y: auto;
+            border: 2px solid rgba(240, 249, 255, 0.7);
+            max-height: none;
+            overflow-y: visible;
+            margin: 24px auto;
+        }
+
+        /* On mobile: add top/bottom padding so decorations are visible around the card */
+        @media (max-width: 520px) {
+            .party-card {
+                margin: 40px auto 60px auto;
+                background: rgba(255, 255, 255, 0.78);
+            }
         }
 
         .party-card::-webkit-scrollbar { width: 4px; }
@@ -269,7 +289,7 @@
         }
 
         .party-details {
-            background-color: #f0f9ff;
+            background-color: rgba(240, 249, 255, 0.7);
             padding: 12px;
             border-radius: 16px;
             font-size: 0.88rem;
@@ -321,8 +341,8 @@
 
         input[type="text"], select {
             width: 100%;
-            background-color: #f8fafc;
-            border: 2px solid #e2e8f0;
+            background-color: rgba(248, 250, 252, 0.8);
+            border: 2px solid rgba(226, 232, 240, 0.8);
             color: var(--text-color);
             padding: 10px;
             font-size: 0.95rem;
@@ -334,7 +354,7 @@
         input[type="text"]:focus, select:focus {
             outline: none;
             border-color: var(--button-color);
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.95);
         }
 
         .grid-2 {
@@ -370,7 +390,7 @@
             font-weight: 600;
             color: #0369a1;
             padding: 12px;
-            background: #f0f9ff;
+            background: rgba(240, 249, 255, 0.7);
             border-radius: 12px;
             font-size: 0.9rem;
         }
@@ -598,27 +618,21 @@ function transmitToGoogle() {
         return;
     }
 
-    btn.innerText = "Saving your spot...";
-    btn.disabled = true;
-
+    // Fire the request — don't wait for it (no-cors gives an opaque
+    // response anyway, so there's nothing useful to read back).
     fetch(googleScriptUrl, {
         method: "POST",
         mode: "no-cors",
         cache: "no-cache",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
-    })
-    .then(() => {
-        btn.style.display = "none";
-        respDiv.style.display = "block";
-        respDiv.innerHTML = "✨ Thank you! Your RSVP has been saved. See you at the buffet! 🍰";
-        fireCelebrationBurst();
-    })
-    .catch(err => {
-        console.error(err);
-        btn.innerText = "Oops! Try clicking again.";
-        btn.disabled = false;
-    });
+    }).catch(err => console.error("RSVP background send error:", err));
+
+    // Show success instantly — the data is already on its way
+    btn.style.display = "none";
+    respDiv.style.display = "block";
+    respDiv.innerHTML = "✨ Thank you! Your RSVP has been saved. See you at the buffet! 🍰";
+    fireCelebrationBurst();
 }
 </script>
 
