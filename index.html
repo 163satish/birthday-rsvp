@@ -631,8 +631,13 @@ function transmitToGoogle() {
     // Show success instantly — the data is already on its way
     btn.style.display = "none";
     respDiv.style.display = "block";
-    respDiv.innerHTML = "✨ Thank you! Your RSVP has been saved. See you at the buffet! 🍰";
-    fireCelebrationBurst();
+
+    if (payload.status === "Declined") {
+        respDiv.innerHTML = "💛 We'll miss you! Thanks for letting us know. Hope to see you soon! 🤗";
+    } else {
+        respDiv.innerHTML = "✨ Thank you! Your RSVP has been saved. See you at the celebration! 🍰";
+        fireCelebrationBurst();
+    }
 }
 </script>
 
