@@ -639,6 +639,18 @@ function transmitToGoogle() {
         fireCelebrationBurst();
     }
 }
+
+// ── Let people change their mind — show the button again if they switch status ──
+document.getElementById('status').addEventListener('change', function() {
+    const btn = document.getElementById('submitBtn');
+    const respDiv = document.getElementById('sysResponse');
+    if (btn.style.display === 'none') {
+        btn.style.display = '';
+        btn.disabled = false;
+        btn.innerText = 'Update My RSVP ✨';
+        respDiv.style.display = 'none';
+    }
+});
 </script>
 
 </body>
