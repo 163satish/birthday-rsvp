@@ -63,22 +63,26 @@
         /* ── Animations ── */
         @keyframes swayLeft {
             0%   { transform: translateY(0) rotate(0deg); }
-            50%  { transform: translateY(-10px) rotate(4deg); }
+            25%  { transform: translateY(-14px) rotate(6deg); }
+            50%  { transform: translateY(-22px) rotate(3deg); }
+            75%  { transform: translateY(-14px) rotate(-4deg); }
             100% { transform: translateY(0) rotate(0deg); }
         }
         @keyframes swayRight {
             0%   { transform: translateY(0) rotate(0deg); }
-            50%  { transform: translateY(-15px) rotate(-6deg); }
+            25%  { transform: translateY(-18px) rotate(-7deg); }
+            50%  { transform: translateY(-28px) rotate(-3deg); }
+            75%  { transform: translateY(-16px) rotate(5deg); }
             100% { transform: translateY(0) rotate(0deg); }
         }
         @keyframes floatUp {
             0%   { transform: translateY(0) rotate(0deg); opacity: 0.7; }
-            50%  { transform: translateY(-18px) rotate(3deg); opacity: 0.9; }
+            50%  { transform: translateY(-32px) rotate(5deg); opacity: 0.95; }
             100% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
         }
         @keyframes floatUpAlt {
             0%   { transform: translateY(0) rotate(0deg); opacity: 0.65; }
-            50%  { transform: translateY(-12px) rotate(-3deg); opacity: 0.85; }
+            50%  { transform: translateY(-26px) rotate(-5deg); opacity: 0.9; }
             100% { transform: translateY(0) rotate(0deg); opacity: 0.65; }
         }
         @keyframes twinkle {
@@ -128,19 +132,19 @@
             color: rgba(0,0,0,0.12);
         }
 
-        .b1  { left: 4%;  top: 8%;     background: var(--pastel-pink);   animation: swayLeft 6s infinite ease-in-out; }
-        .b2  { right: 5%; top: 10%;    background: var(--pastel-yellow); animation: swayRight 8s infinite ease-in-out; }
-        .b3  { left: 6%;  bottom: 8%;  background: var(--pastel-green);  animation: swayRight 7s infinite ease-in-out; }
-        .b4  { right: 4%; bottom: 10%; background: var(--pastel-purple); animation: swayLeft 9s infinite ease-in-out; }
-        .b5  { left: 48%; top: 2%;     background: #ffedd5;             animation: swayLeft 10s infinite ease-in-out; }
-        .b6  { left: 2%;  top: 30%;    background: #bae6fd; animation: floatUp 7s infinite ease-in-out; }
-        .b7  { right: 3%; top: 32%;    background: #fecaca; animation: floatUpAlt 8s infinite ease-in-out; }
-        .b8  { left: 10%; top: 60%;    background: var(--pastel-yellow); animation: floatUp 9s infinite ease-in-out; opacity: 0.7; }
-        .b9  { right: 10%;top: 65%;    background: var(--pastel-pink);   animation: floatUpAlt 6.5s infinite ease-in-out; opacity: 0.7; }
-        .b10 { left: 3%;  bottom: 28%; background: #c4b5fd; animation: swayRight 8s infinite ease-in-out; }
-        .b11 { right: 2%; bottom: 30%; background: #a7f3d0; animation: swayLeft 7.5s infinite ease-in-out; }
-        .b12 { left: 15%; top: 3%;     background: #fda4af; animation: floatUp 11s infinite ease-in-out; opacity: 0.65; }
-        .b13 { right: 14%;top: 5%;     background: #d8b4fe; animation: floatUpAlt 10s infinite ease-in-out; opacity: 0.65; }
+        .b1  { left: 4%;  top: 8%;     background: var(--pastel-pink);   animation: swayLeft 3s infinite ease-in-out; }
+        .b2  { right: 5%; top: 10%;    background: var(--pastel-yellow); animation: swayRight 3.6s infinite ease-in-out; }
+        .b3  { left: 6%;  bottom: 8%;  background: var(--pastel-green);  animation: swayRight 3.2s infinite ease-in-out; }
+        .b4  { right: 4%; bottom: 10%; background: var(--pastel-purple); animation: swayLeft 4s infinite ease-in-out; }
+        .b5  { left: 48%; top: 2%;     background: #ffedd5;             animation: swayLeft 4.4s infinite ease-in-out; }
+        .b6  { left: 2%;  top: 30%;    background: #bae6fd; animation: floatUp 3.2s infinite ease-in-out; }
+        .b7  { right: 3%; top: 32%;    background: #fecaca; animation: floatUpAlt 3.6s infinite ease-in-out; }
+        .b8  { left: 10%; top: 60%;    background: var(--pastel-yellow); animation: floatUp 4s infinite ease-in-out; opacity: 0.7; }
+        .b9  { right: 10%;top: 65%;    background: var(--pastel-pink);   animation: floatUpAlt 3s infinite ease-in-out; opacity: 0.7; }
+        .b10 { left: 3%;  bottom: 28%; background: #c4b5fd; animation: swayRight 3.6s infinite ease-in-out; }
+        .b11 { right: 2%; bottom: 30%; background: #a7f3d0; animation: swayLeft 3.4s infinite ease-in-out; }
+        .b12 { left: 15%; top: 3%;     background: #fda4af; animation: floatUp 4.8s infinite ease-in-out; opacity: 0.65; }
+        .b13 { right: 14%;top: 5%;     background: #d8b4fe; animation: floatUpAlt 4.4s infinite ease-in-out; opacity: 0.65; }
 
         /* Small balloons */
         .balloon-sm {
@@ -153,10 +157,10 @@
             position: absolute; bottom: -7px; left: 11px;
             color: rgba(0,0,0,0.08);
         }
-        .bs1 { left: 20%; bottom: 5%;  background: #fde68a; animation: floatUp 9s infinite ease-in-out; }
-        .bs2 { right: 20%;bottom: 6%;  background: #fbcfe8; animation: floatUpAlt 8s infinite ease-in-out; }
-        .bs3 { left: 25%; top: 15%;    background: #bbf7d0; animation: swayLeft 7s infinite ease-in-out; }
-        .bs4 { right: 22%;top: 18%;    background: #bae6fd; animation: swayRight 8.5s infinite ease-in-out; }
+        .bs1 { left: 20%; bottom: 5%;  background: #fde68a; animation: floatUp 4s infinite ease-in-out; }
+        .bs2 { right: 20%;bottom: 6%;  background: #fbcfe8; animation: floatUpAlt 3.6s infinite ease-in-out; }
+        .bs3 { left: 25%; top: 15%;    background: #bbf7d0; animation: swayLeft 3.2s infinite ease-in-out; }
+        .bs4 { right: 22%;top: 18%;    background: #bae6fd; animation: swayRight 3.8s infinite ease-in-out; }
 
         /* Party hats */
         .party-hat {
@@ -165,30 +169,65 @@
             border-right: 14px solid transparent;
             border-bottom: 28px solid #fdba74;
         }
-        .h1 { left: 8%;  top: 45%; transform: rotate(15deg);  animation: swayLeft 7s infinite ease-in-out; }
-        .h2 { right: 8%; top: 50%; transform: rotate(-20deg); border-bottom-color: #c084fc; animation: swayRight 8s infinite ease-in-out; }
-        .h3 { left: 18%; bottom: 18%; transform: rotate(10deg); border-bottom-color: #f9a8d4; animation: floatUp 9s infinite ease-in-out; opacity: 0.6; }
+        .h1 { left: 8%;  top: 45%; transform: rotate(15deg);  animation: swayLeft 3.4s infinite ease-in-out; }
+        .h2 { right: 8%; top: 50%; transform: rotate(-20deg); border-bottom-color: #c084fc; animation: swayRight 3.8s infinite ease-in-out; }
+        .h3 { left: 18%; bottom: 18%; transform: rotate(10deg); border-bottom-color: #f9a8d4; animation: floatUp 4s infinite ease-in-out; opacity: 0.6; }
 
         /* Stars */
         .star { font-size: 1.4rem; color: var(--pastel-yellow); }
-        .s1 { left: 14%;  top: 25%;    animation: swayLeft 5s infinite ease-in-out; }
-        .s2 { right: 15%; bottom: 30%; animation: swayRight 6s infinite ease-in-out; }
-        .s3 { left: 22%;  top: 5%;     animation: twinkle 3s infinite ease-in-out; font-size: 1.1rem; }
-        .s4 { right: 20%; top: 8%;     animation: twinkle 4s infinite ease-in-out 0.5s; font-size: 1rem; }
-        .s5 { left: 8%;   bottom: 40%; animation: twinkle 3.5s infinite ease-in-out 1s; font-size: 1.2rem; }
-        .s6 { right: 6%;  bottom: 45%; animation: twinkle 4.5s infinite ease-in-out 0.3s; font-size: 1rem; }
-        .s7 { left: 30%;  bottom: 3%;  animation: twinkle 3s infinite ease-in-out 0.8s; font-size: 1.3rem; }
-        .s8 { right: 28%; bottom: 4%;  animation: twinkle 3.8s infinite ease-in-out 1.2s; font-size: 1.1rem; }
+        .s1 { left: 14%;  top: 25%;    animation: swayLeft 2.6s infinite ease-in-out; }
+        .s2 { right: 15%; bottom: 30%; animation: swayRight 3s infinite ease-in-out; }
+        .s3 { left: 22%;  top: 5%;     animation: twinkle 1.6s infinite ease-in-out; font-size: 1.1rem; }
+        .s4 { right: 20%; top: 8%;     animation: twinkle 2s infinite ease-in-out 0.4s; font-size: 1rem; }
+        .s5 { left: 8%;   bottom: 40%; animation: twinkle 1.8s infinite ease-in-out 0.5s; font-size: 1.2rem; }
+        .s6 { right: 6%;  bottom: 45%; animation: twinkle 2.2s infinite ease-in-out 0.3s; font-size: 1rem; }
+        .s7 { left: 30%;  bottom: 3%;  animation: twinkle 1.6s infinite ease-in-out 0.6s; font-size: 1.3rem; }
+        .s8 { right: 28%; bottom: 4%;  animation: twinkle 2s infinite ease-in-out 0.8s; font-size: 1.1rem; }
 
         /* Floating emojis */
         .emoji-float {
             position: absolute; font-size: 1.3rem;
             opacity: 0.5; pointer-events: none;
         }
-        .ef1 { left: 5%;   top: 18%;    animation: floatUp 8s infinite ease-in-out; }
-        .ef2 { right: 6%;  top: 22%;    animation: floatUpAlt 9s infinite ease-in-out; }
-        .ef3 { left: 12%;  bottom: 15%; animation: floatUp 10s infinite ease-in-out; }
-        .ef4 { right: 12%; bottom: 18%; animation: floatUpAlt 7s infinite ease-in-out; }
+        .ef1 { left: 5%;   top: 18%;    animation: floatUp 3.6s infinite ease-in-out; }
+        .ef2 { right: 6%;  top: 22%;    animation: floatUpAlt 4s infinite ease-in-out; }
+        .ef3 { left: 12%;  bottom: 15%; animation: floatUp 4.4s infinite ease-in-out; }
+        .ef4 { right: 12%; bottom: 18%; animation: floatUpAlt 3.2s infinite ease-in-out; }
+
+        /* ── Extra decorations clustered nearer the card (mid zone) ── */
+        /* More large balloons */
+        .b14 { left: 28%; top: 12%;    background: #f0abfc; animation: floatUp 3.4s infinite ease-in-out; }
+        .b15 { right: 27%;top: 14%;    background: #93c5fd; animation: floatUpAlt 3.8s infinite ease-in-out; }
+        .b16 { left: 30%; bottom: 12%; background: #fcd34d; animation: swayLeft 3.6s infinite ease-in-out; }
+        .b17 { right: 29%;bottom: 14%; background: #86efac; animation: swayRight 3.2s infinite ease-in-out; }
+        .b18 { left: 33%; top: 40%;    background: #fca5a5; animation: floatUp 4s infinite ease-in-out; opacity: 0.7; }
+        .b19 { right: 32%;top: 44%;    background: #c4b5fd; animation: floatUpAlt 3.6s infinite ease-in-out; opacity: 0.7; }
+        .b20 { left: 35%; top: 75%;    background: #fbcfe8; animation: swayRight 3.4s infinite ease-in-out; opacity: 0.7; }
+        .b21 { right: 34%;top: 78%;    background: #a5f3fc; animation: swayLeft 3.8s infinite ease-in-out; opacity: 0.7; }
+
+        /* More small balloons — mid zone */
+        .bs5 { left: 32%; top: 25%;    background: #fef08a; animation: floatUpAlt 3s infinite ease-in-out; }
+        .bs6 { right: 31%;top: 28%;    background: #ddd6fe; animation: floatUp 3.4s infinite ease-in-out; }
+        .bs7 { left: 34%; bottom: 25%; background: #bbf7d0; animation: swayLeft 3.2s infinite ease-in-out; }
+        .bs8 { right: 33%;bottom: 28%; background: #fecdd3; animation: swayRight 3.6s infinite ease-in-out; }
+
+        /* More party hats — mid zone */
+        .h4 { left: 26%; top: 60%; transform: rotate(-12deg); border-bottom-color: #67e8f9; animation: swayRight 3.4s infinite ease-in-out; opacity: 0.7; }
+        .h5 { right: 25%;top: 30%; transform: rotate(18deg);  border-bottom-color: #fca5a5; animation: swayLeft 3.8s infinite ease-in-out; opacity: 0.7; }
+
+        /* More stars & sparkles — mid zone */
+        .s9  { left: 29%; top: 33%;    animation: twinkle 1.6s infinite ease-in-out 0.2s; font-size: 1.1rem; }
+        .s10 { right: 28%;top: 55%;    animation: twinkle 2s infinite ease-in-out 0.7s; font-size: 1.2rem; }
+        .s11 { left: 31%; bottom: 38%; animation: twinkle 1.8s infinite ease-in-out 0.5s; font-size: 1rem; }
+        .s12 { right: 30%;bottom: 40%; animation: twinkle 2.2s infinite ease-in-out 0.9s; font-size: 1.3rem; }
+        .s13 { left: 40%; top: 6%;     animation: twinkle 1.6s infinite ease-in-out 0.4s; font-size: 1rem; }
+        .s14 { right: 40%;bottom: 6%;  animation: twinkle 2s infinite ease-in-out 0.6s; font-size: 1.1rem; }
+
+        /* More floating emojis — mid zone */
+        .ef5 { left: 27%; top: 50%;    animation: floatUp 3.4s infinite ease-in-out; }
+        .ef6 { right: 26%;top: 68%;    animation: floatUpAlt 3.8s infinite ease-in-out; }
+        .ef7 { left: 38%; bottom: 20%; animation: floatUp 4s infinite ease-in-out; }
+        .ef8 { right: 38%;top: 20%;    animation: floatUpAlt 3.2s infinite ease-in-out; }
 
         /* ── RSVP Card ── */
         .party-card {
@@ -457,13 +496,27 @@
     <div class="decor-item balloon b11"></div>
     <div class="decor-item balloon b12"></div>
     <div class="decor-item balloon b13"></div>
+    <div class="decor-item balloon b14"></div>
+    <div class="decor-item balloon b15"></div>
+    <div class="decor-item balloon b16"></div>
+    <div class="decor-item balloon b17"></div>
+    <div class="decor-item balloon b18"></div>
+    <div class="decor-item balloon b19"></div>
+    <div class="decor-item balloon b20"></div>
+    <div class="decor-item balloon b21"></div>
     <div class="decor-item balloon-sm bs1"></div>
     <div class="decor-item balloon-sm bs2"></div>
     <div class="decor-item balloon-sm bs3"></div>
     <div class="decor-item balloon-sm bs4"></div>
+    <div class="decor-item balloon-sm bs5"></div>
+    <div class="decor-item balloon-sm bs6"></div>
+    <div class="decor-item balloon-sm bs7"></div>
+    <div class="decor-item balloon-sm bs8"></div>
     <div class="decor-item party-hat h1"></div>
     <div class="decor-item party-hat h2"></div>
     <div class="decor-item party-hat h3"></div>
+    <div class="decor-item party-hat h4"></div>
+    <div class="decor-item party-hat h5"></div>
     <div class="decor-item star s1">⭐</div>
     <div class="decor-item star s2">✨</div>
     <div class="decor-item star s3">⭐</div>
@@ -472,10 +525,20 @@
     <div class="decor-item star s6">✨</div>
     <div class="decor-item star s7">🌟</div>
     <div class="decor-item star s8">✨</div>
+    <div class="decor-item star s9">✨</div>
+    <div class="decor-item star s10">⭐</div>
+    <div class="decor-item star s11">🌟</div>
+    <div class="decor-item star s12">✨</div>
+    <div class="decor-item star s13">⭐</div>
+    <div class="decor-item star s14">✨</div>
     <div class="emoji-float ef1">🎈</div>
     <div class="emoji-float ef2">🎁</div>
     <div class="emoji-float ef3">🧁</div>
     <div class="emoji-float ef4">🎉</div>
+    <div class="emoji-float ef5">🎈</div>
+    <div class="emoji-float ef6">🎂</div>
+    <div class="emoji-float ef7">🎁</div>
+    <div class="emoji-float ef8">🧁</div>
 </div>
 
 <!-- Confetti Canvas -->
