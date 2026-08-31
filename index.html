@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saarth is Turning One! 🎂</title>
+
+    <!-- Google Fonts — playful + readable combo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --sky-blue: #e0f2fe;
-            --cloud-white: #ffffff;
             --pastel-pink: #fbcfe8;
             --pastel-yellow: #fef08a;
             --text-color: #334155;
@@ -15,13 +20,15 @@
             --button-hover: #0ea5e9;
             --pastel-green: #bbf7d0;
             --pastel-purple: #e9d5ff;
+            --font-display: 'Fredoka', 'Segoe UI', sans-serif;
+            --font-body: 'Nunito', 'Segoe UI', sans-serif;
         }
 
         html, body {
-            background: linear-gradient(135deg, #e0f2fe 0%, #fbcfe8 35%, #fef9c3 65%, #e0f2fe 100%);
+            background: linear-gradient(135deg, #dbeafe 0%, #fbcfe8 30%, #fef9c3 55%, #d9f99d 75%, #e0f2fe 100%);
             background-attachment: fixed;
             color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-body);
             margin: 0;
             padding: 0;
             width: 100%;
@@ -33,7 +40,6 @@
             box-sizing: border-box;
         }
 
-        /* On small screens: let the page scroll so decorations above/below are visible */
         @media (max-width: 520px) {
             html, body {
                 align-items: flex-start;
@@ -42,109 +48,29 @@
             }
         }
 
-        /* Decorative Elements Background Layer */
+        /* ── Decorative background layer ── */
         .decor-layer {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             overflow: hidden;
             pointer-events: none;
             z-index: 1;
         }
 
-        .decor-item {
-            position: absolute;
-            opacity: 0.8;
-        }
+        .decor-item { position: absolute; opacity: 0.8; }
 
-        /* Gentle Sway Animations */
+        /* ── Animations ── */
         @keyframes swayLeft {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(4deg); }
+            0%   { transform: translateY(0) rotate(0deg); }
+            50%  { transform: translateY(-10px) rotate(4deg); }
             100% { transform: translateY(0) rotate(0deg); }
         }
-
         @keyframes swayRight {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(-6deg); }
+            0%   { transform: translateY(0) rotate(0deg); }
+            50%  { transform: translateY(-15px) rotate(-6deg); }
             100% { transform: translateY(0) rotate(0deg); }
         }
-
-        /* Confetti fall animation */
-        @keyframes confettiFall {
-            0% {
-                transform: translateY(-10px) rotate(0deg) scale(1);
-                opacity: 1;
-            }
-            25% {
-                transform: translateY(25vh) rotate(90deg) scale(0.95);
-                opacity: 0.9;
-            }
-            50% {
-                transform: translateY(50vh) rotate(180deg) scale(0.9);
-                opacity: 0.7;
-            }
-            75% {
-                transform: translateY(75vh) rotate(270deg) scale(0.85);
-                opacity: 0.4;
-            }
-            100% {
-                transform: translateY(105vh) rotate(360deg) scale(0.8);
-                opacity: 0;
-            }
-        }
-
-        /* Confetti drift — gives each piece a gentle horizontal wobble */
-        @keyframes confettiDrift {
-            0%, 100% { margin-left: 0; }
-            25% { margin-left: 15px; }
-            75% { margin-left: -15px; }
-        }
-
-        /* Confetti pieces */
-        .confetti {
-            position: absolute;
-            top: -12px;
-            width: 8px;
-            height: 8px;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 0;
-            animation: confettiFall linear infinite, confettiDrift ease-in-out infinite;
-        }
-
-        /* Different confetti shapes */
-        .confetti.circle {
-            border-radius: 50%;
-        }
-        .confetti.square {
-            border-radius: 2px;
-        }
-        .confetti.ribbon {
-            width: 4px;
-            height: 14px;
-            border-radius: 2px;
-        }
-
-        /* Balloons styling */
-        .balloon {
-            width: 42px;
-            height: 52px;
-            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-        }
-
-        .balloon::after {
-            content: "│";
-            font-size: 8px;
-            position: absolute;
-            bottom: -10px;
-            left: 18px;
-            color: rgba(0,0,0,0.12);
-        }
-
-        /* ── Float animation for rising elements ── */
         @keyframes floatUp {
             0%   { transform: translateY(0) rotate(0deg); opacity: 0.7; }
             50%  { transform: translateY(-18px) rotate(3deg); opacity: 0.9; }
@@ -155,21 +81,58 @@
             50%  { transform: translateY(-12px) rotate(-3deg); opacity: 0.85; }
             100% { transform: translateY(0) rotate(0deg); opacity: 0.65; }
         }
-
-        /* Twinkle for stars */
         @keyframes twinkle {
             0%, 100% { opacity: 0.5; transform: scale(1); }
             50%      { opacity: 1;   transform: scale(1.25); }
         }
+        @keyframes confettiFall {
+            0%   { transform: translateY(-10px) rotate(0deg) scale(1); opacity: 1; }
+            25%  { transform: translateY(25vh) rotate(90deg) scale(0.95); opacity: 0.9; }
+            50%  { transform: translateY(50vh) rotate(180deg) scale(0.9); opacity: 0.7; }
+            75%  { transform: translateY(75vh) rotate(270deg) scale(0.85); opacity: 0.4; }
+            100% { transform: translateY(105vh) rotate(360deg) scale(0.8); opacity: 0; }
+        }
+        @keyframes confettiDrift {
+            0%, 100% { margin-left: 0; }
+            25% { margin-left: 15px; }
+            75% { margin-left: -15px; }
+        }
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50%      { transform: scale(1.06); }
+        }
+        @keyframes burstFall {
+            0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(60vh) rotate(720deg); opacity: 0; }
+        }
 
-        /* Asset Placements — Original balloons */
+        /* ── Confetti pieces ── */
+        .confetti {
+            position: absolute; top: -12px;
+            width: 8px; height: 8px; opacity: 0;
+            pointer-events: none; z-index: 0;
+            animation: confettiFall linear infinite, confettiDrift ease-in-out infinite;
+        }
+        .confetti.circle { border-radius: 50%; }
+        .confetti.square { border-radius: 2px; }
+        .confetti.ribbon { width: 4px; height: 14px; border-radius: 2px; }
+
+        /* ── Balloons ── */
+        .balloon {
+            width: 42px; height: 52px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+        }
+        .balloon::after {
+            content: "│"; font-size: 8px;
+            position: absolute; bottom: -10px; left: 18px;
+            color: rgba(0,0,0,0.12);
+        }
+
         .b1  { left: 4%;  top: 8%;     background: var(--pastel-pink);   animation: swayLeft 6s infinite ease-in-out; }
         .b2  { right: 5%; top: 10%;    background: var(--pastel-yellow); animation: swayRight 8s infinite ease-in-out; }
         .b3  { left: 6%;  bottom: 8%;  background: var(--pastel-green);  animation: swayRight 7s infinite ease-in-out; }
         .b4  { right: 4%; bottom: 10%; background: var(--pastel-purple); animation: swayLeft 9s infinite ease-in-out; }
         .b5  { left: 48%; top: 2%;     background: #ffedd5;             animation: swayLeft 10s infinite ease-in-out; }
-
-        /* Extra balloons — scattered along edges */
         .b6  { left: 2%;  top: 30%;    background: #bae6fd; animation: floatUp 7s infinite ease-in-out; }
         .b7  { right: 3%; top: 32%;    background: #fecaca; animation: floatUpAlt 8s infinite ease-in-out; }
         .b8  { left: 10%; top: 60%;    background: var(--pastel-yellow); animation: floatUp 9s infinite ease-in-out; opacity: 0.7; }
@@ -179,19 +142,15 @@
         .b12 { left: 15%; top: 3%;     background: #fda4af; animation: floatUp 11s infinite ease-in-out; opacity: 0.65; }
         .b13 { right: 14%;top: 5%;     background: #d8b4fe; animation: floatUpAlt 10s infinite ease-in-out; opacity: 0.65; }
 
-        /* Small balloons — mini accent versions */
+        /* Small balloons */
         .balloon-sm {
-            width: 26px;
-            height: 32px;
+            width: 26px; height: 32px;
             border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
             opacity: 0.55;
         }
         .balloon-sm::after {
-            content: "│";
-            font-size: 6px;
-            position: absolute;
-            bottom: -7px;
-            left: 11px;
+            content: "│"; font-size: 6px;
+            position: absolute; bottom: -7px; left: 11px;
             color: rgba(0,0,0,0.08);
         }
         .bs1 { left: 20%; bottom: 5%;  background: #fde68a; animation: floatUp 9s infinite ease-in-out; }
@@ -199,20 +158,18 @@
         .bs3 { left: 25%; top: 15%;    background: #bbf7d0; animation: swayLeft 7s infinite ease-in-out; }
         .bs4 { right: 22%;top: 18%;    background: #bae6fd; animation: swayRight 8.5s infinite ease-in-out; }
 
-        /* Party Hat Accents */
+        /* Party hats */
         .party-hat {
-            width: 0;
-            height: 0;
+            width: 0; height: 0;
             border-left: 14px solid transparent;
             border-right: 14px solid transparent;
             border-bottom: 28px solid #fdba74;
         }
-
         .h1 { left: 8%;  top: 45%; transform: rotate(15deg);  animation: swayLeft 7s infinite ease-in-out; }
         .h2 { right: 8%; top: 50%; transform: rotate(-20deg); border-bottom-color: #c084fc; animation: swayRight 8s infinite ease-in-out; }
         .h3 { left: 18%; bottom: 18%; transform: rotate(10deg); border-bottom-color: #f9a8d4; animation: floatUp 9s infinite ease-in-out; opacity: 0.6; }
 
-        /* Stars — original + extras with twinkle */
+        /* Stars */
         .star { font-size: 1.4rem; color: var(--pastel-yellow); }
         .s1 { left: 14%;  top: 25%;    animation: swayLeft 5s infinite ease-in-out; }
         .s2 { right: 15%; bottom: 30%; animation: swayRight 6s infinite ease-in-out; }
@@ -223,147 +180,171 @@
         .s7 { left: 30%;  bottom: 3%;  animation: twinkle 3s infinite ease-in-out 0.8s; font-size: 1.3rem; }
         .s8 { right: 28%; bottom: 4%;  animation: twinkle 3.8s infinite ease-in-out 1.2s; font-size: 1.1rem; }
 
-        /* Floating emoji accents */
+        /* Floating emojis */
         .emoji-float {
-            position: absolute;
-            font-size: 1.3rem;
-            opacity: 0.5;
-            pointer-events: none;
+            position: absolute; font-size: 1.3rem;
+            opacity: 0.5; pointer-events: none;
         }
         .ef1 { left: 5%;   top: 18%;    animation: floatUp 8s infinite ease-in-out; }
         .ef2 { right: 6%;  top: 22%;    animation: floatUpAlt 9s infinite ease-in-out; }
         .ef3 { left: 12%;  bottom: 15%; animation: floatUp 10s infinite ease-in-out; }
         .ef4 { right: 12%; bottom: 18%; animation: floatUpAlt 7s infinite ease-in-out; }
 
-        /* Centered RSVP Card — frosted glass so decorations show through */
+        /* ── RSVP Card ── */
         .party-card {
             background: rgba(255, 255, 255, 0.72);
             backdrop-filter: blur(14px) saturate(1.4);
             -webkit-backdrop-filter: blur(14px) saturate(1.4);
-            border-radius: 24px;
+            border-radius: 28px;
             box-shadow:
                 0 8px 32px rgba(219, 39, 119, 0.08),
                 0 2px 8px rgba(56, 189, 248, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.6);
             width: 92%;
             max-width: 440px;
-            padding: 28px;
+            padding: 32px 28px;
             box-sizing: border-box;
             z-index: 10;
             position: relative;
             border: 2px solid rgba(251, 207, 232, 0.45);
-            max-height: none;
-            overflow-y: visible;
             margin: 24px auto;
         }
 
-        /* On mobile: add top/bottom padding so decorations are visible around the card */
         @media (max-width: 520px) {
             .party-card {
                 margin: 40px auto 60px auto;
                 background: rgba(255, 255, 255, 0.68);
+                padding: 24px 20px;
             }
         }
 
         .party-card::-webkit-scrollbar { width: 4px; }
         .party-card::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 4px; }
 
+        /* ── Header ── */
         .header {
             text-align: center;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .one-badge {
-            background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
-            color: #db2777;
-            font-size: 2.6rem;
-            font-weight: bold;
-            width: 60px;
-            height: 60px;
-            line-height: 60px;
+            background: linear-gradient(135deg, #f9a8d4, #c084fc);
+            color: #fff;
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 700;
+            width: 68px;
+            height: 68px;
+            line-height: 68px;
             border-radius: 50%;
-            margin: 0 auto 10px auto;
+            margin: 0 auto 12px auto;
             display: block;
-            box-shadow: 0 4px 12px rgba(219, 39, 119, 0.15);
+            box-shadow: 0 6px 20px rgba(192, 132, 252, 0.3);
+            animation: gentlePulse 3s infinite ease-in-out;
         }
 
         h1 {
-            font-size: 1.35rem;
-            margin: 0 0 8px 0;
-            background: linear-gradient(135deg, #0284c7, #db2777);
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            background: linear-gradient(135deg, #7c3aed, #db2777, #f59e0b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            line-height: 1.3;
         }
 
+        .subtitle {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: #64748b;
+            margin: 0 0 14px 0;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── Party details box ── */
         .party-details {
-            background: linear-gradient(135deg, rgba(240, 249, 255, 0.7), rgba(251, 207, 232, 0.25));
-            padding: 12px;
+            background: linear-gradient(135deg, rgba(240, 249, 255, 0.65), rgba(251, 207, 232, 0.3));
+            padding: 14px 16px;
             border-radius: 16px;
-            font-size: 0.88rem;
-            line-height: 1.45;
+            font-size: 0.9rem;
+            line-height: 1.6;
             color: #475569;
             border: 1px solid rgba(251, 207, 232, 0.3);
         }
 
         .party-details a {
-            color: #0284c7;
-            font-weight: bold;
-            text-decoration: underline;
+            color: #7c3aed;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1.5px dashed rgba(124, 58, 237, 0.4);
+            transition: border-color 0.2s;
         }
-
         .party-details a:hover {
-            color: #0369a1;
+            border-bottom-color: #7c3aed;
         }
 
         .map-link {
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            margin-top: 6px;
-            font-size: 0.82rem;
-            color: #0284c7;
+            margin-top: 8px;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            color: #fff;
             text-decoration: none;
-            font-weight: 600;
-            padding: 4px 10px;
-            background: #e0f2fe;
-            border-radius: 8px;
-            transition: background 0.2s;
+            font-weight: 700;
+            padding: 5px 12px;
+            background: linear-gradient(135deg, #7c3aed, #db2777);
+            border-radius: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2);
         }
-
         .map-link:hover {
-            background: #bae6fd;
-            text-decoration: none;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
         }
 
+        /* ── Form ── */
         .form-group {
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            font-family: var(--font-display);
             font-weight: 600;
             font-size: 0.88rem;
             color: #7c3aed;
+            letter-spacing: 0.01em;
         }
 
         input[type="text"], select {
             width: 100%;
-            background-color: rgba(248, 250, 252, 0.8);
+            font-family: var(--font-body);
+            background-color: rgba(248, 250, 252, 0.85);
             border: 2px solid rgba(226, 232, 240, 0.8);
             color: var(--text-color);
-            padding: 10px;
+            padding: 11px 12px;
             font-size: 0.95rem;
-            border-radius: 12px;
+            border-radius: 14px;
             box-sizing: border-box;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
         input[type="text"]:focus, select:focus {
             outline: none;
-            border-color: var(--button-color);
+            border-color: #a78bfa;
             background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+        }
+
+        input::placeholder {
+            color: #a3b1c6;
+            font-style: italic;
         }
 
         .grid-2 {
@@ -372,72 +353,81 @@
             gap: 12px;
         }
 
+        /* ── Button ── */
         button {
             width: 100%;
-            background: linear-gradient(135deg, #38bdf8, #a78bfa);
+            font-family: var(--font-display);
+            background: linear-gradient(135deg, #7c3aed, #db2777);
             color: white;
             border: none;
             padding: 14px;
-            font-weight: bold;
-            font-size: 1rem;
+            font-weight: 700;
+            font-size: 1.05rem;
             cursor: pointer;
-            margin-top: 5px;
-            border-radius: 16px;
-            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+            margin-top: 6px;
+            border-radius: 18px;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
             transition: all 0.2s;
+            letter-spacing: 0.02em;
         }
 
         button:hover {
-            background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(56, 189, 248, 0.35);
+            background: linear-gradient(135deg, #6d28d9, #be185d);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
         }
 
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* ── Response message ── */
         #sysResponse {
-            margin-top: 12px;
+            margin-top: 14px;
             display: none;
             text-align: center;
+            font-family: var(--font-display);
             font-weight: 600;
             color: #7c3aed;
-            padding: 12px;
-            background: linear-gradient(135deg, rgba(240, 249, 255, 0.6), rgba(233, 213, 255, 0.4));
-            border-radius: 12px;
-            font-size: 0.9rem;
+            padding: 14px;
+            background: linear-gradient(135deg, rgba(240, 249, 255, 0.5), rgba(233, 213, 255, 0.4));
+            border-radius: 14px;
+            font-size: 0.92rem;
             border: 1px solid rgba(167, 139, 250, 0.2);
+            line-height: 1.5;
         }
 
+        /* ── Footer ── */
         .footer {
-            margin-top: 15px;
+            margin-top: 18px;
             text-align: center;
-            font-size: 0.78rem;
+            font-family: var(--font-display);
+            font-size: 0.82rem;
             color: #94a3b8;
+            letter-spacing: 0.01em;
         }
 
-        /* Success confetti burst — triggered after RSVP */
-        @keyframes burstFall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(60vh) rotate(720deg);
-                opacity: 0;
-            }
+        /* ── Divider between header and form ── */
+        .card-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.3), rgba(219, 39, 119, 0.2), transparent);
+            margin: 18px 0;
         }
 
+        /* ── Burst confetti ── */
         .burst-confetti {
             position: fixed;
-            width: 10px;
-            height: 10px;
+            width: 10px; height: 10px;
             border-radius: 2px;
             z-index: 1000;
             pointer-events: none;
             animation: burstFall 2.5s ease-out forwards;
         }
 
-        /* Reduce motion for accessibility */
+        /* ── Accessibility ── */
         @media (prefers-reduced-motion: reduce) {
-            .confetti, .decor-item, .burst-confetti, .balloon-sm, .emoji-float, .star {
+            .confetti, .decor-item, .burst-confetti, .balloon-sm, .emoji-float, .star, .one-badge {
                 animation: none !important;
                 opacity: 0.5;
             }
@@ -446,9 +436,8 @@
 </head>
 <body>
 
-<!-- Background Decorations Canvas -->
+<!-- Background Decorations -->
 <div class="decor-layer">
-    <!-- Balloons — large -->
     <div class="decor-item balloon b1"></div>
     <div class="decor-item balloon b2"></div>
     <div class="decor-item balloon b3"></div>
@@ -462,19 +451,13 @@
     <div class="decor-item balloon b11"></div>
     <div class="decor-item balloon b12"></div>
     <div class="decor-item balloon b13"></div>
-
-    <!-- Balloons — small accents -->
     <div class="decor-item balloon-sm bs1"></div>
     <div class="decor-item balloon-sm bs2"></div>
     <div class="decor-item balloon-sm bs3"></div>
     <div class="decor-item balloon-sm bs4"></div>
-
-    <!-- Party hats -->
     <div class="decor-item party-hat h1"></div>
     <div class="decor-item party-hat h2"></div>
     <div class="decor-item party-hat h3"></div>
-
-    <!-- Stars & sparkles -->
     <div class="decor-item star s1">⭐</div>
     <div class="decor-item star s2">✨</div>
     <div class="decor-item star s3">⭐</div>
@@ -483,29 +466,30 @@
     <div class="decor-item star s6">✨</div>
     <div class="decor-item star s7">🌟</div>
     <div class="decor-item star s8">✨</div>
-
-    <!-- Floating emoji accents -->
     <div class="emoji-float ef1">🎈</div>
     <div class="emoji-float ef2">🎁</div>
     <div class="emoji-float ef3">🧁</div>
     <div class="emoji-float ef4">🎉</div>
 </div>
 
-<!-- Confetti Canvas — JS fills this -->
+<!-- Confetti Canvas -->
 <div id="confettiCanvas" class="decor-layer" style="z-index: 2;"></div>
 
-<!-- Main RSVP Card -->
+<!-- RSVP Card -->
 <div class="party-card">
     <div class="header">
         <span class="one-badge">1</span>
-        <h1>Our Little Boy Saarth is Turning One!</h1>
+        <h1>Our Little Boy Saarth<br>is Turning One!</h1>
+        <p class="subtitle">You're invited to celebrate with us 🎉</p>
         <div class="party-details">
             📍 <strong>Where:</strong> <a href="https://maps.app.goo.gl/wcpAz48rbvpB59iU6" target="_blank" rel="noopener">Saravanaa Bhavan, 8701 120 St, Delta, BC</a><br>
             📅 <strong>When:</strong> Monday, Sept 7th<br>
             ⏰ <strong>Time:</strong> 12:00 PM<br>
-                
+            </a>
         </div>
     </div>
+
+    <hr class="card-divider">
 
     <div class="form-group">
         <label for="name">Your Name</label>
@@ -522,7 +506,7 @@
 
     <div class="grid-2">
         <div class="form-group">
-            <label for="adults">Number of Adults</label>
+            <label for="adults">Adults</label>
             <select id="adults">
                 <option value="0">0</option>
                 <option value="1" selected>1</option>
@@ -532,7 +516,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="kids">Number of Kids</label>
+            <label for="kids">Kids</label>
             <select id="kids">
                 <option value="0" selected>0</option>
                 <option value="1">1</option>
@@ -544,8 +528,8 @@
     </div>
 
     <div class="form-group">
-        <label for="ages">Ages of the Kids (For restaurant pricing)</label>
-        <input type="text" id="ages" placeholder="e.g., 2, 5 (Leave blank if none)">
+        <label for="ages">Ages of Kids <span style="font-weight:400; color:#94a3b8;">(for restaurant pricing)</span></label>
+        <input type="text" id="ages" placeholder="e.g., 2, 5 — leave blank if none">
     </div>
 
     <button type="button" id="submitBtn" onclick="transmitToGoogle()">Save My RSVP ✨</button>
@@ -553,17 +537,17 @@
     <div id="sysResponse"></div>
 
     <div class="footer">
-        Can't wait to celebrate together! 🎈
+        Can't wait to celebrate together! 🎈🎂
     </div>
 </div>
 
 <script>
-// ── Ambient confetti — gentle background celebration ──
+// ── Ambient confetti ──
 (function createAmbientConfetti() {
     const canvas = document.getElementById('confettiCanvas');
-    const colors = ['#fbcfe8', '#fef08a', '#bbf7d0', '#e9d5ff', '#fed7aa', '#bae6fd', '#fecaca', '#c4b5fd', '#a7f3d0', '#fda4af'];
-    const shapes = ['circle', 'square', 'ribbon'];
-    const count = 35; // more pieces for a fuller celebration feel
+    const colors = ['#fbcfe8','#fef08a','#bbf7d0','#e9d5ff','#fed7aa','#bae6fd','#fecaca','#c4b5fd','#a7f3d0','#fda4af'];
+    const shapes = ['circle','square','ribbon'];
+    const count = 35;
 
     for (let i = 0; i < count; i++) {
         const piece = document.createElement('div');
@@ -571,9 +555,9 @@
         const color = colors[Math.floor(Math.random() * colors.length)];
         const left = Math.random() * 100;
         const size = 4 + Math.random() * 7;
-        const fallDuration = 7 + Math.random() * 12;    // 7–19s fall
-        const driftDuration = 3 + Math.random() * 5;    // 3–8s wobble
-        const delay = Math.random() * fallDuration;      // stagger start
+        const fallDuration = 7 + Math.random() * 12;
+        const driftDuration = 3 + Math.random() * 5;
+        const delay = Math.random() * fallDuration;
 
         piece.className = `confetti ${shape}`;
         piece.style.cssText = `
@@ -588,12 +572,10 @@
     }
 })();
 
-// ── Celebration burst — fires after successful RSVP ──
+// ── Celebration burst ──
 function fireCelebrationBurst() {
-    const colors = ['#f472b6', '#facc15', '#4ade80', '#a78bfa', '#fb923c', '#38bdf8', '#f87171'];
-    const count = 40;
-
-    for (let i = 0; i < count; i++) {
+    const colors = ['#f472b6','#facc15','#4ade80','#a78bfa','#fb923c','#38bdf8','#f87171'];
+    for (let i = 0; i < 40; i++) {
         const piece = document.createElement('div');
         piece.className = 'burst-confetti';
         piece.style.background = colors[Math.floor(Math.random() * colors.length)];
@@ -605,8 +587,6 @@ function fireCelebrationBurst() {
         piece.style.animationDelay = (Math.random() * 0.6) + 's';
         piece.style.animationDuration = (1.8 + Math.random() * 1.5) + 's';
         document.body.appendChild(piece);
-
-        // Clean up after animation
         setTimeout(() => piece.remove(), 3500);
     }
 }
@@ -629,8 +609,6 @@ function transmitToGoogle() {
         return;
     }
 
-    // Fire the request — don't wait for it (no-cors gives an opaque
-    // response anyway, so there's nothing useful to read back).
     fetch(googleScriptUrl, {
         method: "POST",
         mode: "no-cors",
@@ -639,19 +617,18 @@ function transmitToGoogle() {
         body: JSON.stringify(payload)
     }).catch(err => console.error("RSVP background send error:", err));
 
-    // Show success instantly — the data is already on its way
     btn.style.display = "none";
     respDiv.style.display = "block";
 
     if (payload.status === "Declined") {
-        respDiv.innerHTML = "💛 We'll miss you! Thanks for letting us know. Hope to see you soon! 🤗";
+        respDiv.innerHTML = "&#128148; We'll miss you! Thanks for letting us know. Hope to see you soon! 🤗";
     } else {
-        respDiv.innerHTML = "✨ Thank you! Your RSVP has been saved. See you at the celebration! 🍰";
+        respDiv.innerHTML = "✨ Thank you! Your RSVP has been saved. See you at the celebration! 🎂";
         fireCelebrationBurst();
     }
 }
 
-// ── Let people change their mind — show the button again if they switch status ──
+// ── Let people change their mind ──
 document.getElementById('status').addEventListener('change', function() {
     const btn = document.getElementById('submitBtn');
     const respDiv = document.getElementById('sysResponse');
