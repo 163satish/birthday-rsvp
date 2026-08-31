@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Little One is Turning One! 🎂</title>
+    <title>Saarth is Turning One! 🎂</title>
     <style>
         :root {
             --sky-blue: #e0f2fe;
@@ -18,14 +18,15 @@
         }
 
         html, body {
-            background-color: var(--sky-blue);
+            background: linear-gradient(135deg, #e0f2fe 0%, #fbcfe8 35%, #fef9c3 65%, #e0f2fe 100%);
+            background-attachment: fixed;
             color: var(--text-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             width: 100%;
             min-height: 100vh;
-            min-height: 100dvh;      /* dynamic viewport height — avoids iOS address bar quirks */
+            min-height: 100dvh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -236,18 +237,21 @@
 
         /* Centered RSVP Card — frosted glass so decorations show through */
         .party-card {
-            background: rgba(255, 255, 255, 0.82);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(14px) saturate(1.4);
+            -webkit-backdrop-filter: blur(14px) saturate(1.4);
             border-radius: 24px;
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.12);
+            box-shadow:
+                0 8px 32px rgba(219, 39, 119, 0.08),
+                0 2px 8px rgba(56, 189, 248, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
             width: 92%;
             max-width: 440px;
             padding: 28px;
             box-sizing: border-box;
             z-index: 10;
             position: relative;
-            border: 2px solid rgba(240, 249, 255, 0.7);
+            border: 2px solid rgba(251, 207, 232, 0.45);
             max-height: none;
             overflow-y: visible;
             margin: 24px auto;
@@ -257,7 +261,7 @@
         @media (max-width: 520px) {
             .party-card {
                 margin: 40px auto 60px auto;
-                background: rgba(255, 255, 255, 0.78);
+                background: rgba(255, 255, 255, 0.68);
             }
         }
 
@@ -270,7 +274,7 @@
         }
 
         .one-badge {
-            background-color: var(--pastel-pink);
+            background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
             color: #db2777;
             font-size: 2.6rem;
             font-weight: bold;
@@ -280,21 +284,26 @@
             border-radius: 50%;
             margin: 0 auto 10px auto;
             display: block;
+            box-shadow: 0 4px 12px rgba(219, 39, 119, 0.15);
         }
 
         h1 {
             font-size: 1.35rem;
             margin: 0 0 8px 0;
-            color: #0284c7;
+            background: linear-gradient(135deg, #0284c7, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .party-details {
-            background-color: rgba(240, 249, 255, 0.7);
+            background: linear-gradient(135deg, rgba(240, 249, 255, 0.7), rgba(251, 207, 232, 0.25));
             padding: 12px;
             border-radius: 16px;
             font-size: 0.88rem;
             line-height: 1.45;
             color: #475569;
+            border: 1px solid rgba(251, 207, 232, 0.3);
         }
 
         .party-details a {
@@ -336,7 +345,7 @@
             margin-bottom: 5px;
             font-weight: 600;
             font-size: 0.88rem;
-            color: #0369a1;
+            color: #7c3aed;
         }
 
         input[type="text"], select {
@@ -365,7 +374,7 @@
 
         button {
             width: 100%;
-            background-color: var(--button-color);
+            background: linear-gradient(135deg, #38bdf8, #a78bfa);
             color: white;
             border: none;
             padding: 14px;
@@ -374,13 +383,14 @@
             cursor: pointer;
             margin-top: 5px;
             border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
             transition: all 0.2s;
         }
 
         button:hover {
-            background-color: var(--button-hover);
+            background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
             transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(56, 189, 248, 0.35);
         }
 
         #sysResponse {
@@ -388,11 +398,12 @@
             display: none;
             text-align: center;
             font-weight: 600;
-            color: #0369a1;
+            color: #7c3aed;
             padding: 12px;
-            background: rgba(240, 249, 255, 0.7);
+            background: linear-gradient(135deg, rgba(240, 249, 255, 0.6), rgba(233, 213, 255, 0.4));
             border-radius: 12px;
             font-size: 0.9rem;
+            border: 1px solid rgba(167, 139, 250, 0.2);
         }
 
         .footer {
@@ -487,7 +498,7 @@
 <div class="party-card">
     <div class="header">
         <span class="one-badge">1</span>
-        <h1>Our Little Boy is Turning One!</h1>
+        <h1>Our Little Boy Saarth is Turning One!</h1>
         <div class="party-details">
             📍 <strong>Where:</strong> <a href="https://maps.app.goo.gl/wcpAz48rbvpB59iU6" target="_blank" rel="noopener">Saravanaa Bhavan, 8701 120 St, Delta, BC</a><br>
             📅 <strong>When:</strong> Monday, Sept 7th<br>
